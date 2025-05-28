@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - LONE's MINI BRANDHOUSE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        /* Contact Page Specific Styles */
+        #contact-header {
+            background-image: url('Image/banner/b1.jpg');
+            width: 100%;
+            height: 40vh;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 14px;
+            margin-bottom: 40px;
+        }
+        
+        #contact-header h2,
+        #contact-header p {
+            color: #fff;
+        }
+        
+        #contact-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 80px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            margin-right: 30px;
+        }
+        
+        .contact-info h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #088178;
+        }
+        
+        .contact-info h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            color: #088178;
+            font-size: 18px;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        .contact-text {
+            flex: 1;
+        }
+        
+        .contact-text p {
+            margin: 0;
+            color: #465b52;
+            font-size: 14px;
+        }
+        
+        .contact-map {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        #contact-form {
+            background: #f8f8f8;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 40px 80px;
+        }
+        
+        #contact-form h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #088178;
+        }
+        
+        #contact-form p {
+            margin-bottom: 25px;
+            color: #465b52;
+        }
+        
+        #contact-form input,
+        #contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        #contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        #contact-form button {
+            background-color: #088178;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        #contact-form button:hover {
+            background-color: #066a63;
+        }
+        
+        @media (max-width: 799px) {
+            #contact-container {
+                padding: 40px 40px;
+            }
+            
+            .contact-info {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            #contact-form {
+                margin: 40px 40px;
+            }
+        }
+        
+        @media (max-width: 477px) {
+            #contact-container,
+            #contact-form {
+                padding: 20px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="header">
+        <div class="header-logo">
+            <a href="index.html"><img src="./Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo"></a>
+        </div>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+               
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+
+    <section id="contact-header">
+        <h2>#let's_talk</h2>
+        <p>LEAVE A MESSAGE, We love to hear from you!</p>
+    </section>
+
+    <div id="contact-container">
+        <div class="contact-info">
+            <h2>GET IN TOUCH</h2>
+            <h3>Head Office</h3>
+            
+            <div class="contact-detail">
+                <i class="fas fa-map-marker-alt contact-icon"></i>
+                <div class="contact-text">
+                    <p>56 Glassford Street Glasgow G1 1UL New York</p>
+                </div>
+            </div>
+            
+            <div class="contact-detail">
+                <i class="fas fa-envelope contact-icon"></i>
+                <div class="contact-text">
+                    <p>contact@lonesbrandhouse.com</p>
+                </div>
+            </div>
+            
+            <div class="contact-detail">
+                <i class="fas fa-phone contact-icon"></i>
+                <div class="contact-text">
+                    <p>+1 234 567 8900</p>
+                </div>
+            </div>
+            
+            <div class="contact-detail">
+                <i class="fas fa-clock contact-icon"></i>
+                <div class="contact-text">
+                    <p>Monday to Saturday: 9:00am to 6:00pm</p>
+                </div>
+            </div>
+        </div>
+        
+     
+    </div>
+
+    <form id="contact-form">
+        <h2>LEAVE A MESSAGE</h2>
+        <p>We're here to help and answer any questions you might have.</p>
+        
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="text" placeholder="Subject">
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit" class="normal">Submit</button>
+    </form>
+
+
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="Image/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address :</strong> Wellington Road, Street 32. San Francisco</p>
+            <p><strong>Phone :</strong> +01 2222 365 / (+91) 01 2345 6789</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <div>Follow us</div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook-square"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+        
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - LONE's MINI BRANDHOUSE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="Image/favicon.ico">
+    <style>
+        /* New styles for the payment modal */
+        .payment-modal-container {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .payment-modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .payment-modal-content .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .payment-modal-content .close-button:hover,
+        .payment-modal-content .close-button:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        .payment-modal-content h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #088178;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .payment-option input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+        }
+
+        .payment-option img {
+            width: 40px;
+            height: auto;
+            margin-right: 15px;
+            /* Added for consistency with external images */
+            object-fit: contain;
+        }
+
+        .payment-option label {
+            font-size: 18px;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .payment-details-form {
+            display: none; /* Hidden by default, shown when a payment method is selected */
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .payment-details-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .payment-details-form input[type="text"],
+        .payment-details-form input[type="number"],
+        .payment-details-form select {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .payment-details-form .input-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .payment-details-form .input-group > div {
+            flex: 1;
+        }
+
+        .payment-details-form button {
+            width: 100%;
+            padding: 15px;
+            background-color: #088178;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-details-form button:hover {
+            background-color: #065f56;
+        }
+    </style>
+</head>
+<body>
+    <section id="header">
+        <div class="header-logo">
+            <a href="index.html"><img src="./Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo"></a>
+        </div>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="coutact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="cart-header" style="background-image: url('Image/banner/b1.jpg'); background-size: cover; background-position: center; padding: 100px 0; text-align: center; color: #fff;">
+        <h2 style="font-size: 46px; line-height: 64px;">#YourCart</h2>
+        <p style="font-size: 20px;">Review your selected items</p>
+    </section>
+
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody id="cart-items-body">
+            </tbody>
+        </table>
+        <div id="cart-summary">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td id="cart-subtotal">$0.00</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td id="cart-total"><strong>$0.00</strong></td>
+                </tr>
+            </table>
+            <button class="normal" id="proceed-to-checkout-btn">Proceed to checkout</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo">
+            <h4>Contact</h4>
+            <p><strong>Address :</strong>Wellington Road, Street 32. San Francisco</p>
+            <p><strong>Phone :</strong>Wellington Road, Street 32. San Francisco</p>
+            <p><strong>Hours:</strong>10:00 - 18:00. Mon - Sat</p>
+            <div class="follow">
+                <div>Follow us</div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook-square"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="about.html">About us</a>
+            <a href="#" id="deliveryInfoLinkFooter">Delivery Information</a>
+            <a href="#" id="privacyPolicyLinkFooter">Privacy Policy</a>
+            <a href="#" id="termsConditionsLinkFooter">Terms & Conditions</a>
+            <a href="#" id="contactUsLinkFooter">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="cart.html">View Cart</a>
+            <a href="waitlist.html">My Waitlist</a>
+            <a href="trackorder.html">Track My Order</a>
+            <a href="help.html">Help</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="Image/pay/app.jpg" alt="App Store">
+                <img src="Image/pay/play.jpg" alt="Google Play">
+            </div>
+            <p>Secured payment Gateway</p>
+            <img src="Image/pay/pay.png" alt="Payment Gateways">
+        </div>
+    </footer>
+
+    <div id="modal-container" class="modal-container">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="payment-modal-container" class="payment-modal-container">
+        <div class="payment-modal-content">
+            <span class="close-button" id="close-payment-modal">&times;</span>
+            <h2>Choose Payment Method</h2>
+            <div class="payment-options">
+                <div class="payment-option" data-payment-method="credit-card">
+                    <input type="radio" id="credit-card" name="payment-method" value="credit-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Credit Card" style="width: 50px;">
+                    <label for="credit-card">Credit / Debit Card</label>
+                </div>
+                <div class="payment-option" data-payment-method="paypal">
+                    <input type="radio" id="paypal" name="payment-method" value="paypal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" style="width: 70px;">
+                    <label for="paypal">PayPal</label>
+                </div>
+                <div class="payment-option" data-payment-method="cash-on-delivery">
+                    <input type="radio" id="cash-on-delivery" name="payment-method" value="cash-on-delivery">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3039/3039343.png" alt="Cash on Delivery" style="width: 40px;">
+                    <label for="cash-on-delivery">Cash on Delivery</label>
+                </div>
+            </div>
+
+            <div id="payment-details-form" class="payment-details-form">
+                </div>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Cart functionality
+        const cartItemsBody = document.getElementById('cart-items-body');
+        const cartSubtotalElement = document.getElementById('cart-subtotal');
+        const cartTotalElement = document.getElementById('cart-total');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Function to render cart items
+        function renderCart() {
+            cartItemsBody.innerHTML = '';
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                cartItemsBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 20px;">Your cart is empty.</td></tr>';
+            } else {
+                cart.forEach(item => {
+                    const row = document.createElement('tr');
+                    const itemSubtotal = item.price * item.quantity;
+                    subtotal += itemSubtotal;
+
+                    // Try to get local image first, fallback to placeholder if not found
+                    const localImagePath = `Image/products/${item.id}.jpg`;
+                    const imageUrl = checkImageExists(localImagePath) ? localImagePath : 'Image/products/placeholder.jpg';
+
+                    row.innerHTML = `
+                        <td><a href="#" class="remove-item" data-product-id="${item.id}"><i class="far fa-times-circle"></i></a></td>
+                        <td><img src="${imageUrl}" alt="${item.name}" style="width:70px;height:auto;"></td>
+                        <td>${item.name}</td>
+                        <td>$${item.price.toFixed(2)}</td>
+                        <td><input type="number" value="${item.quantity}" min="1" class="item-quantity" data-product-id="${item.id}"></td>
+                        <td>$${itemSubtotal.toFixed(2)}</td>
+                    `;
+                    cartItemsBody.appendChild(row);
+                });
+            }
+
+            cartSubtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+            cartTotalElement.innerHTML = `<strong>$${subtotal.toFixed(2)}</strong>`;
+            updateCartCount();
+        }
+
+        // Helper function to check if image exists (simplified)
+        function checkImageExists(url) {
+            // For a real application, you might use a more robust check (e.g., XMLHttpRequest)
+            // For now, we'll assume local images exist if their path is well-formed.
+            return url.includes('Image/products/');
+        }
+
+        // Update cart count in navbar
+        function updateCartCount() {
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            cartCountElements.forEach(el => {
+                el.textContent = totalItems;
+                el.style.display = totalItems > 0 ? 'inline-block' : 'none';
+            });
+        }
+
+        // Remove item from cart
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.remove-item')) {
+                e.preventDefault();
+                const productId = e.target.closest('.remove-item').dataset.productId;
+                cart = cart.filter(item => item.id !== productId);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCart();
+            }
+        });
+
+        // Update quantity
+        document.addEventListener('change', (e) => {
+            if (e.target.classList.contains('item-quantity')) {
+                const productId = e.target.dataset.productId;
+                const newQuantity = parseInt(e.target.value);
+                
+                if (isNaN(newQuantity) || newQuantity < 1) {
+                    e.target.value = 1;
+                    const item = cart.find(item => item.id === productId);
+                    if (item) item.quantity = 1;
+                } else {
+                    const item = cart.find(item => item.id === productId);
+                    if (item) item.quantity = newQuantity;
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCart();
+            }
+        });
+
+        // --- Generic Modal Functionality ---
+        const modalContainer = document.getElementById('modal-container');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeButton = document.querySelector('#modal-container .close-button');
+
+        function openModal(title, content) {
+            modalTitle.textContent = title;
+            modalBody.innerHTML = content;
+            modalContainer.style.display = 'flex';
+        }
+
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                modalContainer.style.display = 'none';
+            });
+        }
+
+        if (modalContainer) {
+            window.addEventListener('click', (event) => {
+                if (event.target == modalContainer) {
+                    modalContainer.style.display = 'none';
+                }
+            });
+        }
+
+        // --- Footer Link Handlers (re-using generic modal) ---
+        const footerLinks = {
+            'deliveryInfoLinkFooter': {
+                title: 'Delivery Information',
+                content: '<p><strong>Standard Delivery:</strong> 3-5 business days. Free for orders over $100.</p><p><strong>Express Delivery:</strong> 1-2 business days. Flat rate of $15.</p><p>We ship internationally. International shipping times and costs vary by destination.</p>'
+            },
+            'privacyPolicyLinkFooter': {
+                title: 'Privacy Policy',
+                content: '<p>Your privacy is important to us. This policy explains how we collect, use, and protect your personal data.</p><ul><li>We collect information when you register, place an order, or subscribe to our newsletter.</li><li>We use your information to process transactions, send periodic emails, and improve our services.</li><li>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties.</li></ul>'
+            },
+            'termsConditionsLinkFooter': {
+                title: 'Terms & Conditions',
+                content: '<p>By using our website and services, you agree to comply with and be bound by the following terms and conditions:</p><ul><li>All content on this site is for your general information and use only. It is subject to change without notice.</li><li>Unauthorized use of this website may give rise to a claim for damages and/or be a criminal offense.</li><li>Your use of any information or materials on this website is entirely at your own risk.</li></ul>'
+            },
+            'contactUsLinkFooter': {
+                title: 'Contact Us',
+                content: '<p>Have questions? Reach out to us!</p><p><strong>Email:</strong> support@lonebrandhouse.com</p><p><strong>Phone:</strong> +1 (555) 123-4567</p><p><strong>Address:</strong> Wellington Road, Street 32. San Francisco</p><p><strong>Business Hours:</strong> Monday - Saturday, 10:00 AM - 6:00 PM</p>'
+            }
+        };
+
+        Object.keys(footerLinks).forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(footerLinks[id].title, footerLinks[id].content);
+                });
+            }
+        });
+
+        // --- Payment Modal Functionality ---
+        const proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
+        const paymentModalContainer = document.getElementById('payment-modal-container');
+        const closePaymentModalBtn = document.getElementById('close-payment-modal');
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        const paymentDetailsForm = document.getElementById('payment-details-form');
+
+        // Show payment modal when "Proceed to checkout" is clicked
+        if (proceedToCheckoutBtn) {
+            proceedToCheckoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('Your cart is empty. Please add items before proceeding to checkout.');
+                    return;
+                }
+                paymentModalContainer.style.display = 'flex';
+                // Reset form when opening
+                paymentDetailsForm.innerHTML = '';
+                paymentDetailsForm.style.display = 'none';
+                paymentOptions.forEach(option => {
+                    const radio = option.querySelector('input[type="radio"]');
+                    if (radio) radio.checked = false;
+                    option.classList.remove('selected');
+                });
+            });
+        }
+
+        // Close payment modal
+        if (closePaymentModalBtn) {
+            closePaymentModalBtn.addEventListener('click', () => {
+                paymentModalContainer.style.display = 'none';
+            });
+        }
+
+        // Close payment modal if clicked outside
+        if (paymentModalContainer) {
+            window.addEventListener('click', (event) => {
+                if (event.target == paymentModalContainer) {
+                    paymentModalContainer.style.display = 'none';
+                }
+            });
+        }
+
+        // Handle payment option selection
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Deselect previous option and select current
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                const radio = option.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+
+                const paymentMethod = option.dataset.paymentMethod;
+                displayPaymentForm(paymentMethod);
+            });
+        });
+
+        function displayPaymentForm(method) {
+            let formHtml = '';
+            paymentDetailsForm.style.display = 'block'; // Show the form container
+
+            switch (method) {
+                case 'credit-card':
+                    formHtml = `
+                        <h3>Credit Card Details</h3>
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required maxlength="19">
+                        <label for="card-name">Name on Card</label>
+                        <input type="text" id="card-name" placeholder="Full Name" required>
+                        <div class="input-group">
+                            <div>
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" id="expiry-date" placeholder="MM/YY" required maxlength="5">
+                            </div>
+                            <div>
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123" required maxlength="4">
+                            </div>
+                        </div>
+                        <button type="submit">Pay Now ($${parseFloat(cartTotalElement.textContent.replace('$', '')).toFixed(2)})</button>
+                    `;
+                    break;
+                case 'paypal':
+                    formHtml = `
+                        <h3>Pay with PayPal</h3>
+                        <p>You will be redirected to PayPal to complete your purchase securely.</p>
+                        <button type="submit">Continue to PayPal</button>
+                    `;
+                    break;
+                case 'cash-on-delivery':
+                    formHtml = `
+                        <h3>Cash on Delivery</h3>
+                        <p>You will pay when your order is delivered. Please have the exact amount ready.</p>
+                        <p>Your order total will be <strong>${cartTotalElement.textContent}</strong>.</p>
+                        <button type="submit">Place Order (Cash on Delivery)</button>
+                    `;
+                    break;
+                default:
+                    formHtml = '<p>Please select a payment method.</p>';
+                    paymentDetailsForm.style.display = 'none'; // Hide if no method or unknown method
+                    break;
+            }
+            paymentDetailsForm.innerHTML = formHtml;
+
+            // Add event listener for form submission (example placeholder)
+            const paymentFormBtn = paymentDetailsForm.querySelector('button[type="submit"]');
+            if (paymentFormBtn) {
+                paymentFormBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // In a real application, you would send this data to a server
+                    alert('Payment processed successfully! (This is a demo)');
+                    // Clear cart after successful order
+                    cart = [];
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCart();
+                    paymentModalContainer.style.display = 'none';
+                });
+            }
+        }
+
+        // Initialize cart display
+        renderCart();
+    });
+</script>
+</body>
+</html>

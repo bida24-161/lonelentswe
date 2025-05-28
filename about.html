@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - LONE's MINI BRANDHOUSE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="Image/favicon.ico">
+</head>
+<body>
+    <section id="header">
+        <div class="header-logo">
+            <a href="index.html"><img src="./Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo"></a>
+        </div>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+
+                <li><a class="active" href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+				 <li><a href="faq.html">FAQ</a></li>
+               <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header" style="background-image: url('Image/about/banner.png'); background-size: cover; background-position: center; padding: 100px 0; text-align: center; color: #fff;">
+        <h2 style="font-size: 46px; line-height: 64px;">#KnowUs</h2>
+        <p style="font-size: 20px;">Read all about us and our mission!</p>
+    </section>
+
+    <section id="about-head" class="section-p1">
+        <img src="Image/about/a6.jpg" alt="Team discussing product designs">
+        <div>
+            <h2>Who We Are?</h2>
+            <p>LONE's MINI BRANDHOUSE is more than just an online store; it's a destination for fashion enthusiasts seeking quality, style, and individuality. Founded with a passion for bringing curated collections to your doorstep, we pride ourselves on offering a diverse range of clothing and accessories that cater to modern tastes and timeless elegance. Our journey began with a simple idea: to make high-quality, fashionable items accessible to everyone, ensuring a seamless and enjoyable shopping experience from browse to unbox.</p>
+            <p>We work tirelessly to source from reputable brands and emerging designers, focusing on materials, craftsmanship, and ethical production. We believe that fashion should not only look good but also feel good, contributing positively to both your wardrobe and the world around us. Join the LONE's MINI BRANDHOUSE community and discover your next favorite piece.</p>
+            <br>
+            <abbr title="">
+                Create stunning images with as much or as little control as you like thanks to a choice of Basic and Creative modes.
+            </abbr>
+            <br><br>
+            <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="100%">
+                Create stunning images with as much or as little control as you like thanks to a choice of Basic and Creative modes.
+            </marquee>
+        </div>
+    </section>
+
+
+
+    <section id="feature" class="section-p1">
+        <div class="fe-box">
+            <img src="Image/features/f1.png" alt="Free Shipping">
+            <h6>Free Shipping</h6>
+        </div>
+        <div class="fe-box">
+            <img src="Image/features/f2.png" alt="Online Order">
+            <h6>Online Order</h6>
+        </div>
+        <div class="fe-box">
+            <img src="Image/features/f3.png" alt="Save Money">
+            <h6>Save Money</h6>
+        </div>
+        <div class="fe-box">
+            <img src="Image/features/f4.png" alt="Promotions">
+            <h6>Promotions</h6>
+        </div>
+        <div class="fe-box">
+            <img src="Image/features/f5.png" alt="Happy Sell">
+            <h6>Happy Sell</h6>
+        </div>
+        <div class="fe-box">
+            <img src="Image/features/f6.png" alt="24/7 Support">
+            <h6>F24/7 Support</h6>
+        </div>
+    </section>
+
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo">
+            <h4>Contact</h4>
+            <p><strong>Address :</strong>Wellington Road, Street 32. San Francisco</p>
+            <p><strong>Phone :</strong>Wellington Road, Street 32. San Francisco</p>
+            <p><strong>Hours:</strong>10:00 - 18:00. Mon - Sat</p>
+            <div class="follow">
+                <div>Follow us</div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook-square"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="about.html">About us</a>
+            <a href="#" id="deliveryInfoLinkFooter">Delivery Information</a>
+            <a href="#" id="privacyPolicyLinkFooter">Privacy Policy</a>
+            <a href="#" id="termsConditionsLinkFooter">Terms & Conditions</a>
+            <a href="#" id="contactUsLinkFooter">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+     
+            <a href="cart.html">View Cart</a>
+            <a href="waitlist.html">My Waitlist</a>
+            <a href="trackorder.html">Track My Order</a>
+            <a href="help.html">Help</a>
+        </div>
+
+        
+    </footer>
+
+    <div id="modal-container" class="modal-container">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Re-initialize mobile menu if script.js is loaded late, or ensure it's globally handled
+        const barAbout = document.getElementById('bar');
+        const closeAbout = document.getElementById('close');
+        const navAbout = document.getElementById('navbar');
+
+        if (barAbout) {
+            barAbout.addEventListener('click', () => {
+                navAbout.classList.add('active');
+            });
+        }
+        if (closeAbout) {
+            closeAbout.addEventListener('click', () => {
+                navAbout.classList.remove('active');
+            });
+        }
+
+        // Re-attach footer pop-up handlers for this specific page if script.js isn't global enough
+        document.addEventListener('DOMContentLoaded', () => {
+            const modalContainer = document.getElementById('modal-container');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const closeButton = document.querySelector('.close-button');
+
+            function openModal(title, content) {
+                modalTitle.textContent = title;
+                modalBody.innerHTML = content;
+                modalContainer.style.display = 'flex';
+            }
+
+            if (closeButton) {
+                closeButton.addEventListener('click', () => {
+                    modalContainer.style.display = 'none';
+                });
+            }
+
+            if (modalContainer) {
+                window.addEventListener('click', (event) => {
+                    if (event.target == modalContainer) {
+                        modalContainer.style.display = 'none';
+                    }
+                });
+            }
+
+            // Attach click listeners to footer links on about.html (using different IDs to avoid conflicts if script.js is page-specific)
+            document.getElementById('deliveryInfoLinkFooter').addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal('Delivery Information',
+                    '<p><strong>Standard Delivery:</strong> 3-5 business days. Free for orders over $100.</p>' +
+                    '<p><strong>Express Delivery:</strong> 1-2 business days. Flat rate of $15.</p>' +
+                    '<p>We ship internationally. International shipping times and costs vary by destination.</p>'
+                );
+            });
+
+            document.getElementById('privacyPolicyLinkFooter').addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal('Privacy Policy',
+                    '<p>Your privacy is important to us. This policy explains how we collect, use, and protect your personal data.</p>' +
+                    '<ul>' +
+                    '<li>We collect information when you register, place an order, or subscribe to our newsletter.</li>' +
+                    '<li>We use your information to process transactions, send periodic emails, and improve our services.</li>' +
+                    '<li>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties.</li>' +
+                    '</ul>' +
+                    '<p>For more details, please refer to our full privacy policy document.</p>'
+                );
+            });
+
+            document.getElementById('termsConditionsLinkFooter').addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal('Terms & Conditions',
+                    '<p>By using our website and services, you agree to comply with and be bound by the following terms and conditions:</p>' +
+                    '<ul>' +
+                    '<li>All content on this site is for your general information and use only. It is subject to change without notice.</li>' +
+                    '<li>Unauthorized use of this website may give rise to a claim for damages and/or be a criminal offense.</li>' +
+                    '<li>Your use of any information or materials on this website is entirely at your own risk.</li>' +
+                    '</ul>' +
+                    '<p>Please read our full terms and conditions carefully before proceeding.</p>'
+                );
+            });
+
+            document.getElementById('contactUsLinkFooter').addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal('Contact Us',
+                    '<p>Have questions? Reach out to us!</p>' +
+                    '<p><strong>Email:</strong> support@lonebrandhouse.com</p>' +
+                    '<p><strong>Phone:</strong> +1 (555) 123-4567</p>' +
+                    '<p><strong>Address:</strong> Wellington Road, Street 32. San Francisco</p>' +
+                    '<p><strong>Business Hours:</strong> Monday - Saturday, 10:00 AM - 6:00 PM</p>'
+                );
+            });
+        });
+    </script>
+</body>
+</html>
