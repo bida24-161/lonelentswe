@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - LONE's MINI BRANDHOUSE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Spartan", sans-serif;
+        }
+
+        h1 {
+            font-size: 50px;
+            line-height: 64px;
+            color: #222;
+        }
+
+        h2 {
+            font-size: 46px;
+            line-height: 54px;
+            color: #222;
+        }
+
+        h4 {
+            font-size: 20px;
+            color: #222;
+        }
+
+        h6 {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #465b52;
+            margin: 15px 0 20px 0;
+        }
+
+        .section-p1 {
+            padding: 40px 80px;
+        }
+
+        .section-m1 {
+            margin: 40px 0;
+        }
+
+        button.normal {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 15px 30px;
+            color: #000;
+            background-color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        button.white {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 11px 18px;
+            color: #fff;
+            background-color: transparent;
+            cursor: pointer;
+            border: 1px solid #fff;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        body {
+            width: 100%;
+        }
+
+        /* Header & Navigation */
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 80px;
+            background: #e3e6f6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            z-index: 999;
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+
+        .header-logo img {
+            height: 40px; /* Adjust as per your logo size */
+        }
+
+        #navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #navbar li {
+            list-style: none;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        #navbar li a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: 0.3s ease;
+        }
+
+        #navbar li a:hover,
+        #navbar li a.active {
+            color: #088178;
+        }
+
+        #navbar li a.active::after,
+        #navbar li a:hover::after {
+            content: "";
+            width: 30%;
+            height: 2px;
+            background: #088178;
+            position: absolute;
+            bottom: -4px;
+            left: 20px;
+        }
+
+        /* Mobile styles */
+        #mobile {
+            display: none;
+            align-items: center;
+        }
+
+        #mobile i {
+            color: #1a1a1a;
+            font-size: 24px;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+
+        #close {
+            display: none;
+        }
+
+        /* Cart Count Specific Styling */
+        .cart-count {
+            background-color: #088178;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 40px 80px; /* Adjust as per section-p1 */
+            background-color: #f8f8f8; /* Light background for footer */
+            border-top: 1px solid #e2e9e1;
+        }
+
+        footer .col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        footer .logo {
+            margin-bottom: 30px;
+            height: 40px; /* Adjust as per your logo size */
+        }
+
+        footer h4 {
+            font-size: 14px;
+            padding-bottom: 20px;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 0 0 8px 0;
+        }
+
+        footer a {
+            font-size: 13px;
+            text-decoration: none;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        footer .follow {
+            margin-top: 20px;
+        }
+
+        footer .follow i {
+            color: #465b52;
+            padding-right: 4px;
+            cursor: pointer;
+        }
+
+        footer .follow i:hover,
+        footer a:hover {
+            color: #088178;
+        }
+
+        /* Modal Styles */
+        #modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Order Confirmation Page Specific Styles */
+        body {
+            background-color: #f4f4f4;
+        }
+        .confirmation-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .confirmation-container h2 {
+            color: #088178;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .confirmation-container p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .confirmation-details {
+            text-align: left;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+        .confirmation-details h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .detail-group {
+            margin-bottom: 15px;
+        }
+        .detail-group strong {
+            display: inline-block;
+            width: 120px; /* Align labels */
+            color: #444;
+        }
+        .order-items-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .order-items-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        .order-items-list li:last-child {
+            border-bottom: none;
+        }
+        .order-item-info {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        .order-item-info img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        .order-item-info .name-qty {
+            font-size: 15px;
+            color: #333;
+        }
+        .order-item-info .name-qty strong {
+            font-weight: 600;
+            width: auto; /* Override default strong width */
+        }
+        .order-item-price {
+            font-weight: bold;
+            color: #088178;
+        }
+        .confirmation-totals {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: right;
+        }
+        .confirmation-totals div {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .confirmation-totals .total {
+            font-size: 22px;
+            font-weight: bold;
+            color: #088178;
+            border-top: 2px solid #088178;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .continue-shopping-button {
+            background-color: #088178;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: background-color 0.3s ease;
+        }
+        .continue-shopping-button:hover {
+            background-color: #06665e;
+        }
+
+        /* Responsive adjustments for confirmation page */
+        @media (max-width: 799px) {
+            .confirmation-container {
+                margin: 20px;
+                padding: 20px;
+            }
+            .confirmation-container h2 {
+                font-size: 28px;
+            }
+            .confirmation-container p {
+                font-size: 16px;
+            }
+            .confirmation-details h3 {
+                font-size: 20px;
+            }
+            .detail-group strong {
+                width: auto;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .order-items-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .order-item-info img {
+                margin-bottom: 10px;
+            }
+            .order-item-price {
+                align-self: flex-end;
+            }
+            .confirmation-totals div {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="header">
+        <div class="header-logo">
+            <a href="index.html"><img src="./Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo"></a>
+        </div>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="coutact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+            <i id="close" class="fa-solid fa-times"></i>
+        </div>
+    </section>
+
+    <div class="confirmation-container">
+        <h2><i class="fas fa-check-circle" style="color: #088178; margin-right: 10px;"></i> Order Confirmed!</h2>
+        <p>Thank you for your purchase. Your order has been successfully placed.</p>
+
+        <div class="confirmation-details">
+            <h3>Order Summary</h3>
+            <div class="detail-group">
+                <strong>Order ID:</strong> <span id="order-id">#LMBH-</span>
+            </div>
+            <div class="detail-group">
+                <strong>Order Date:</strong> <span id="order-date"></span>
+            </div>
+            <div class="detail-group">
+                <strong>Shipping To:</strong> <span id="shipping-address"></span>
+            </div>
+            <div class="detail-group">
+                <strong>Payment Method:</strong> <span id="payment-method"></span>
+            </div>
+
+            <h4>Items Ordered:</h4>
+            <ul id="ordered-items-list" class="order-items-list">
+                </ul>
+
+            <div class="confirmation-totals">
+                <div>
+                    <span>Subtotal:</span>
+                    <span id="confirmation-subtotal">$0.00</span>
+                </div>
+                <div>
+                    <span>Shipping:</span>
+                    <span id="confirmation-shipping">Free</span>
+                </div>
+                <div class="total">
+                    <span>Total:</span>
+                    <span id="confirmation-total">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="continue-shopping-button" onclick="window.location.href='index.html'">Continue Shopping</button>
+    </div>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo">
+            <h4>Contact</h4>
+            <p><strong>Address :</strong>1084 Mogoma Rd, Gaborone</p>
+            <p><strong>Phone :</strong>+267 74697684</p>
+            <p><strong>Hours:</strong>10:00 - 18:00. Mon - Sat</p>
+            <div class="follow">
+                <div>Follow us</div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook-square"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#" id="aboutUsLink">About us</a>
+            <a href="#" id="deliveryInfoLink">Delivery Information</a>
+            <a href="#" id="privacyPolicyLink">Privacy Policy</a>
+            <a href="#" id="termsConditionsLink">Terms & Conditions</a>
+            <a href="#" id="contactUsLink">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#" id="signInLink">Sign In</a>
+            <a href="cart.html" id="viewCartLink">View Cart</a>
+            <a href="#" id="myWaitlistLink">My Waitlist</a>
+            <a href="#" id="trackMyOrderLink">Track My Order</a>
+            <a href="#" id="helpLink">Help</a>
+        </div>
+    </footer>
+
+    <div id="modal-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
+        <div class="modal-content" style="background:white; padding:20px; border-radius:8px; max-width:500px; width:90%; box-shadow:0 5px 15px rgba(0,0,0,0.3); position:relative;">
+            <span class="close-button" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // JavaScript for order-confirmation.html specific logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderIdElement = document.getElementById('order-id');
+            const orderDateElement = document.getElementById('order-date');
+            const shippingAddressElement = document.getElementById('shipping-address');
+            const paymentMethodElement = document.getElementById('payment-method');
+            const orderedItemsList = document.getElementById('ordered-items-list');
+            const confirmationSubtotalElement = document.getElementById('confirmation-subtotal');
+            const confirmationShippingElement = document.getElementById('confirmation-shipping');
+            const confirmationTotalElement = document.getElementById('confirmation-total');
+
+            // --- Common functions (copied for self-containment, but ideally in script.js) ---
+            function updateCartCount() {
+                const cartCountElement = document.querySelector('.cart-count');
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                if (totalItems > 0) {
+                    cartCountElement.textContent = totalItems;
+                    cartCountElement.style.display = 'inline-block';
+                } else {
+                    cartCountElement.style.display = 'none';
+                }
+            }
+            // --- End of common functions ---
+
+            // Retrieve order details from sessionStorage
+            const storedOrderDetails = sessionStorage.getItem('lastOrderDetails');
+
+            if (storedOrderDetails) {
+                const orderDetails = JSON.parse(storedOrderDetails);
+
+                // Populate general order details
+                // Generate a simple unique-ish order ID (in a real app, this comes from the backend)
+                const orderId = `LMBH-${Date.now().toString().slice(-6)}${Math.floor(Math.random() * 1000)}`;
+                orderIdElement.textContent = orderId;
+
+                const orderDate = new Date(orderDetails.orderDate);
+                orderDateElement.textContent = orderDate.toLocaleString(); // Format date nicely
+
+                const shippingInfo = orderDetails.shippingInfo;
+                shippingAddressElement.innerHTML = `
+                    ${shippingInfo.fullName}<br>
+                    ${shippingInfo.address}<br>
+                    ${shippingInfo.city}, ${shippingInfo.zip}<br>
+                    ${shippingInfo.country}<br>
+                    ${shippingInfo.phone}
+                `;
+                paymentMethodElement.textContent = orderDetails.paymentMethod === 'cashOnDelivery' ? 'Cash on Delivery' : orderDetails.paymentMethod;
+
+                // Populate ordered items
+                orderedItemsList.innerHTML = ''; // Clear any placeholder
+                if (orderDetails.items && orderDetails.items.length > 0) {
+                    orderDetails.items.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <div class="order-item-info">
+                                <img src="${item.image}" alt="${item.name}">
+                                <span class="name-qty"><strong>${item.name}</strong><br>Qty: ${item.quantity}</span>
+                            </div>
+                            <span class="order-item-price">$${(item.price * item.quantity).toFixed(2)}</span>
+                        `;
+                        orderedItemsList.appendChild(listItem);
+                    });
+                } else {
+                    orderedItemsList.innerHTML = '<li>No items found for this order.</li>';
+                }
+
+                // Populate totals
+                confirmationSubtotalElement.textContent = `$${orderDetails.subtotal.toFixed(2)}`;
+                confirmationShippingElement.textContent = 'Free'; // Assuming free shipping from checkout
+                confirmationTotalElement.textContent = `$${orderDetails.total.toFixed(2)}`;
+
+                // Clear sessionStorage after displaying (optional, but good for one-time use data)
+                sessionStorage.removeItem('lastOrderDetails');
+
+            } else {
+                // Handle case where no order details are found (e.g., user directly accessed this page)
+                orderIdElement.textContent = 'N/A';
+                orderDateElement.textContent = 'N/A';
+                shippingAddressElement.textContent = 'No order details found. Please place an order first.';
+                paymentMethodElement.textContent = 'N/A';
+                orderedItemsList.innerHTML = '<li>No order details found.</li>';
+                confirmationSubtotalElement.textContent = `$0.00`;
+                confirmationShippingElement.textContent = `Free`;
+                confirmationTotalElement.textContent = `$0.00`;
+            }
+
+            updateCartCount(); // Update the header cart count (should be 0 now)
+        });
+    </script>
+</body>
+</html>
