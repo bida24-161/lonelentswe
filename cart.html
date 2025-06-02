@@ -1,12 +1,338 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">Add commentMore actions
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - LONE's MINI BRANDHOUSE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Your Shopping Cart - LONE's MINI BRANDHOUSE</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
     <style>
+        /* Add these styles to your existing style.css file */
+
+/* Header & Navigation (ensure these styles are suitable for mobile too) */
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background: #e3e6f6;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+    color: #088178;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #088178;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+/* Mobile styles */
+#mobile {
+    display: none; /* Hide mobile icons by default for desktop */
+    align-items: center;
+}
+
+#mobile i {
+    color: #1a1a1a;
+    font-size: 24px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+#close {
+    display: none; /* Hide close icon by default */
+}
+
+/* Cart Count Specific Styling */
+.cart-count {
+    background-color: #088178; /* Or any other color you prefer */
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px; /* Adjust as needed */
+    right: -10px; /* Adjust as needed */
+    display: none; /* Hidden by default, shown by JS if items exist */
+}
+
+/* Page Header */
+#page-header {
+    background-image: url("Image/banner/b1.jpg"); /* Or an appropriate image for cart page */
+    width: 100%;
+    height: 40vh;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 14px;
+}
+
+#page-header h2,
+#page-header p {
+    color: #fff;
+}
+
+/* Cart Section */
+#cart {
+    overflow-x: auto; /* For responsive tables on smaller screens */
+}
+
+#cart table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures columns maintain width */
+    white-space: nowrap;
+}
+
+#cart table img {
+    width: 70px;
+}
+
+#cart table td:nth-child(1) {
+    width: 100px;
+    text-align: center;
+}
+
+#cart table td:nth-child(2) {
+    width: 150px;
+    text-align: center;
+}
+
+#cart table td:nth-child(3) {
+    width: 250px;
+    text-align: center;
+}
+
+#cart table td:nth-child(4),
+#cart table td:nth-child(5),
+#cart table td:nth-child(6) {
+    width: 150px;
+    text-align: center;
+}
+
+#cart table td:nth-child(5) input {
+    width: 70px;
+    padding: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#cart table thead {
+    border: 1px solid #e2e9e1;
+    border-left: none;
+    border-right: none;
+}
+
+#cart table thead td {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 18px 0;
+}
+
+#cart table tbody tr td {
+    padding-top: 15px;
+}
+
+#cart table tbody td {
+    font-size: 13px;
+}
+
+#cart .remove-item {
+    color: #f00; /* Red color for remove icon */
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Cart Add Section (Coupon & Subtotal) */
+#cart-add {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px; /* Spacing from cart table */
+}
+
+#coupon {
+    width: 50%;
+    margin-bottom: 30px;
+}
+
+#coupon h3,
+#subtotal h3 {
+    padding-bottom: 15px;
+}
+
+#coupon input {
+    width: 60%;
+    padding: 10px 20px;
+    outline: none;
+    margin-right: 10px;
+    border: 1px solid #e2e9e1;
+    border-radius: 4px;
+}
+
+#coupon button,
+#subtotal button {
+    background-color: #088178;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#subtotal {
+    width: 40%;
+    border: 1px solid #e2e9e1;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+#subtotal table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#subtotal table td {
+    padding: 10px;
+    border: 1px solid #e2e9e1;
+    font-size: 14px;
+}
+
+#subtotal table td:last-child {
+    text-align: right;
+}
+
+/* General button style (if you don't have it already) */
+.normal {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 30px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+}
+
+.normal:hover {
+    background-color: #088178;
+    color: #fff;
+}
+
+/* Section Padding (if you don't have it already) */
+.section-p1 {
+    padding: 40px 80px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 799px) {
+    #header {
+        padding: 20px 40px;
+    }
+
+    #navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 0;
+        right: -300px; /* Hidden initially */
+        height: 100vh;
+        width: 300px;
+        background-color: #e3e6f6;
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+        padding: 80px 0 0 10px;
+        transition: 0.3s ease;
+    }
+
+    #navbar.active {
+        right: 0px; /* Slide in */
+    }
+
+    #navbar li {
+        margin-bottom: 25px;
+    }
+
+    #mobile {
+        display: flex; /* Show mobile icons */
+    }
+
+    #close {
+        display: initial; /* Show close icon when navbar is active */
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        color: #222;
+        font-size: 24px;
+    }
+
+    #lg-bag {
+        display: none; /* Hide desktop bag icon on mobile */
+    }
+
+    /* Cart Page Mobile Responsiveness */
+    #cart {
+        padding: 20px; /* Smaller padding on mobile */
+    }
+
+    #cart table {
+        table-layout: auto; /* Allow table to adjust */
+        width: 600px; /* Min width to prevent squishing */
+    }
+
+    #cart-add {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #coupon,
+    #subtotal {
+        width: 90%; /* Take more width on mobile */
+    }
+}
+    <link rel="stylesheet" href="style.css"> <style>
+        /* General styles (from your common style.css if not already there, but included for completeness) */
         @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
         * {
@@ -166,14 +492,29 @@
             display: none;
         }
 
+        /* Page Header */
+        #page-header {
+            background-image: url("Image/banner/b1.jpg"); /* Ensure this path is correct */
+            width: 100%;
+            height: 40vh;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 14px;
+        }
+
+        #page-header h2,
+        #page-header p {
+            color: #fff;
+        }
+
         /* Footer */
         footer {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            padding: 40px 80px; /* Adjust as per section-p1 */
-            background-color: #f8f8f8; /* Light background for footer */
-            border-top: 1px solid #e2e9e1;
         }
 
         footer .col {
@@ -252,446 +593,330 @@
             cursor: pointer;
         }
 
-        /* Checkout Page Specific Styles */
-        body {
-            background-color: #f4f4f4; /* Light background for the page */
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            padding: 40px 80px; /* Matches section-p1 */
-            max-width: 1200px;
-            margin: 20px auto;
-            gap: 30px; /* Space between sections */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-            align-items: flex-start; /* Align items to the top */
-        }
-        .checkout-form-section, .order-summary-section {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        .checkout-form-section {
-            flex: 2; /* Takes more space */
-            min-width: 400px; /* Minimum width for form */
-        }
-        .order-summary-section {
-            flex: 1; /* Takes less space */
-            min-width: 300px; /* Minimum width for summary */
+        /* Cart Section Specific Styles */
+        #cart {
+            overflow-x: auto; /* For responsive tables on smaller screens */
         }
 
-        .checkout-form-section h2, .order-summary-section h2 {
-            color: #333;
-            margin-bottom: 25px;
-            font-size: 28px;
-        }
-
-        /* Order Summary Items */
-        #order-summary-items {
-            margin-bottom: 20px;
-            max-height: 400px; /* Limit height for scroll if many items */
-            overflow-y: auto; /* Enable scrolling */
-        }
-
-        .order-summary-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #eee; /* Dotted line between items */
-        }
-        .order-summary-item:last-child {
-            border-bottom: none; /* No border for the last item */
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .order-summary-item-details {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-        }
-        .order-summary-item-details img {
-            width: 60px; /* Larger image in summary */
-            height: 60px;
-            object-fit: cover;
-            margin-right: 15px;
-            border-radius: 4px;
-        }
-        .order-summary-item-details span {
-            font-size: 15px;
-            color: #333;
-            line-height: 1.4;
-        }
-        .order-summary-item-details .item-name {
-            font-weight: 600;
-        }
-        .order-summary-item-details .item-quantity {
-            color: #666;
-            font-size: 13px;
-        }
-
-        .order-summary-item-price {
-            font-weight: bold;
-            font-size: 16px;
-            color: #088178; /* Highlight price */
-        }
-
-        /* Totals */
-        .order-totals {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-        .order-totals div {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            font-size: 16px;
-        }
-        .order-totals .total {
-            font-weight: bold;
-            font-size: 20px;
-            border-top: 2px solid #088178; /* Stronger border for total */
-            padding-top: 15px;
-            margin-top: 10px;
-        }
-        .order-totals .shipping-note {
-            font-size: 13px;
-            color: #666;
-            text-align: right;
-            padding-top: 5px;
-        }
-
-        /* Checkout Form Styles */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"],
-        .form-group select {
+        #cart table {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box; /* Include padding in width */
-            font-size: 15px;
-            transition: border-color 0.3s ease;
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #088178;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(8, 129, 120, 0.2);
+            border-collapse: collapse;
+            table-layout: fixed; /* Ensures columns maintain width */
+            white-space: nowrap;
         }
 
-        button.place-order-button {
-            background-color: #088178;
-            color: #fff;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 4px;
+        #cart table img {
+            width: 70px;
+        }
+
+        #cart table td:nth-child(1) {
+            width: 100px;
+            text-align: center;
+        }
+
+        #cart table td:nth-child(2) {
+            width: 150px;
+            text-align: center;
+        }
+
+        #cart table td:nth-child(3) {
+            width: 250px;
+            text-align: center;
+        }
+
+        #cart table td:nth-child(4),
+        #cart table td:nth-child(5),
+        #cart table td:nth-child(6) {
+            width: 150px;
+            text-align: center;
+        }
+
+        #cart table td:nth-child(5) input {
+            width: 70px;
+            padding: 10px 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #cart table thead {
+            border: 1px solid #e2e9e1;
+            border-left: none;
+            border-right: none;
+        }
+
+        #cart table thead td {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 18px 0;
+        }
+
+        #cart table tbody tr td {
+            padding-top: 15px;
+        }
+
+        #cart table tbody td {
+            font-size: 13px;
+        }
+
+        #cart .remove-item {
+            color: #f00; /* Red color for remove icon */
             font-size: 18px;
             cursor: pointer;
-            width: 100%;
-            margin-top: 25px;
-            transition: background-color 0.3s ease, opacity 0.3s ease;
-        }
-        button.place-order-button:hover:not(:disabled) {
-            background-color: #06665e;
-        }
-        button.place-order-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
         }
 
-        /* Responsive adjustments for checkout */
+        /* Cart Add Section (Coupon & Subtotal) */
+        #cart-add {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 50px; /* Spacing from cart table */
+        }
+
+        #coupon {
+            width: 50%;
+            margin-bottom: 30px;
+        }
+
+        #coupon h3,
+        #subtotal h3 {
+            padding-bottom: 15px;
+        }
+
+        #coupon input {
+            width: 60%;
+            padding: 10px 20px;
+            outline: none;
+            margin-right: 10px;
+            border: 1px solid #e2e9e1;
+            border-radius: 4px;
+        }
+
+        #coupon button,
+        #subtotal button {
+            background-color: #088178;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        #subtotal {
+            width: 40%;
+            border: 1px solid #e2e9e1;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        #subtotal table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #subtotal table td {
+            padding: 10px;
+            border: 1px solid #e2e9e1;
+            font-size: 14px;
+        }
+
+        #subtotal table td:last-child {
+            text-align: right;
+        }
+
+        /* General button style (if you don't have it already) */
+        .normal {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 15px 30px;
+            color: #000;
+            background-color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .normal:hover {
+            background-color: #088178;
+            color: #fff;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 799px) {
-            .container {
-                flex-direction: column;
-                padding: 20px; /* Smaller padding */
-                margin: 10px auto;
+            .section-p1 {
+                padding: 20px;
             }
-            .checkout-form-section, .order-summary-section {
-                min-width: unset; /* Remove min-width */
-                width: 100%;
-                padding: 20px; /* Smaller padding */
-            }
+
             #header {
                 padding: 20px 40px;
             }
-            footer {
-                padding: 20px 40px;
+
+            #navbar {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                position: fixed;
+                top: 0;
+                right: -300px; /* Hidden initially */
+                height: 100vh;
+                width: 300px;
+                background-color: #e3e6f6;
+                box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+                padding: 80px 0 0 10px;
+                transition: 0.3s ease;
+            }
+
+            #navbar.active {
+                right: 0px; /* Slide in */
+            }
+
+            #navbar li {
+                margin-bottom: 25px;
+            }
+
+            #mobile {
+                display: flex; /* Show mobile icons */
+            }
+
+            #close {
+                display: initial; /* Show close icon when navbar is active */
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                color: #222;
+                font-size: 24px;
+            }
+
+            #lg-bag {
+                display: none; /* Hide desktop bag icon on mobile */
+            }
+
+            /* Cart Page Mobile Responsiveness */
+            #cart {
+                padding: 20px; /* Smaller padding on mobile */
+            }
+
+            #cart table {
+                table-layout: auto; /* Allow table to adjust */
+                width: 600px; /* Min width to prevent squishing */
+            }
+
+            #cart-add {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #coupon,
+            #subtotal {
+                width: 90%; /* Take more width on mobile */
             }
         }
     </style>
+    
 </head>
 <body>
     <section id="header">
         <div class="header-logo">
-            <a href="index.html"><img src="./Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo"></a>
-        </div>
-
-        <div>
-            <ul id="navbar">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="coutact.html">Contact</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
-            </ul>
-        </div>
-        <div id="mobile">
-            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
-            <i id="bar" class="fa-solid fa-bars"></i>
-            <i id="close" class="fa-solid fa-times"></i>
+@@ -409,7 +566,7 @@ <h3>Cart Totals</h3>
+                    <td><strong id="cart-total">$0.00</strong></td>
+                </tr>
+            </table>
+            <button class="normal">Proceed to checkout</button>
+            <button class="normal" id="proceed-to-checkout-button">Proceed to checkout</button>
         </div>
     </section>
 
-    <div class="container">
-        <section class="checkout-form-section">
-            <h2>Shipping Information</h2>
-            <form id="checkout-form">
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address" placeholder="Street Address, House Number" required>
-                </div>
-                <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="city" required>
-                </div>
-                <div class="form-group">
-                    <label for="zip">Zip Code</label>
-                    <input type="text" id="zip" name="zip" required>
-                </div>
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <select id="country" name="country" required>
-                        <option value="Botswana" selected>Botswana</option>
-                        </select>
-                </div>
-
-                <h3>Payment Method</h3>
-                <div class="form-group">
-                    <label>
-                        <input type="radio" name="paymentMethod" value="cashOnDelivery" checked> Cash on Delivery
-                    </label>
-                </div>
-                <button type="submit" class="place-order-button">Place Order</button>
-            </form>
-        </section>
-
-        <section class="order-summary-section">
-            <h2>Order Summary</h2>
-            <div id="order-summary-items">
-                <p id="empty-checkout-cart-message" style="text-align: center; margin-top: 20px; color: #888; display: none;">
-                    Your cart is empty! Please add items to your cart before proceeding to checkout.
-                </p>
-            </div>
-            <div class="order-totals">
-                <div>
-                    <span>Subtotal:</span>
-                    <span id="checkout-subtotal">$0.00</span>
-                </div>
-                <div>
-                    <span>Shipping:</span>
-                    <span>Free</span>
-                </div>
-                <div class="total">
-                    <span>Order Total:</span>
-                    <span id="checkout-total">$0.00</span>
-                </div>
-                <p class="shipping-note">Shipping is currently free.</p>
-            </div>
-        </section>
-    </div>
-
-    <footer class="section-p1">
-        <div class="col">
-            <img class="logo" src="Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo">
-            <h4>Contact</h4>
-            <p><strong>Address :</strong>1084 Mogoma Rd, Gaborone</p>
-            <p><strong>Phone :</strong>+267 74697684</p>
-            <p><strong>Hours:</strong>10:00 - 18:00. Mon - Sat</p>
-            <div class="follow">
-                <div>Follow us</div>
-                <div class="icon">
-                    <i class="fa-brands fa-facebook-square"></i>
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-telegram"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <h4>About</h4>
-            <a href="#" id="aboutUsLink">About us</a>
-            <a href="#" id="deliveryInfoLink">Delivery Information</a>
-            <a href="#" id="privacyPolicyLink">Privacy Policy</a>
-            <a href="#" id="termsConditionsLink">Terms & Conditions</a>
-            <a href="#" id="contactUsLink">Contact Us</a>
-        </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="#" id="signInLink">Sign In</a>
-            <a href="cart.html" id="viewCartLink">View Cart</a>
-            <a href="#" id="myWaitlistLink">My Waitlist</a>
-            <a href="#" id="trackMyOrderLink">Track My Order</a>
-            <a href="#" id="helpLink">Help</a>
-        </div>
-    </footer>
-
-    <div id="modal-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
-        <div class="modal-content" style="background:white; padding:20px; border-radius:8px; max-width:500px; width:90%; box-shadow:0 5px 15px rgba(0,0,0,0.3); position:relative;">
-            <span class="close-button" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;">&times;</span>
-            <h3 id="modal-title"></h3>
-            <div id="modal-body"></div>
-        </div>
+@@ -458,15 +615,18 @@ <h3 id="modal-title"></h3>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // In cart.html's script or your main script.js if it handles cart logic
-// Assuming 'subtotal' is your calculated cart total
-localStorage.setItem('cartTotal', subtotal.toFixed(2));
-        // JavaScript for checkout.html specific logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const orderSummaryItemsContainer = document.getElementById('order-summary-items');
-            const checkoutSubtotalElement = document.getElementById('checkout-subtotal');
-            const checkoutTotalElement = document.getElementById('checkout-total');
-            const emptyCartMessage = document.getElementById('empty-checkout-cart-message');
-            const placeOrderButton = document.querySelector('.place-order-button');
-            const checkoutForm = document.getElementById('checkout-form');
 
-            // --- Re-iterating common functions for clarity in this file ---
+    <script>
+        // JavaScript for cart.html specific logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartSubtotalElement = document.getElementById('cart-subtotal');
+            const cartTotalElement = document.getElementById('cart-total');
+            const emptyCartRow = document.getElementById('empty-cart-row');
+            const proceedToCheckoutButton = document.getElementById('proceed-to-checkout-button'); // Get the button
+
+            // Function to get cart items from localStorage (repeated for clarity, but ideally in a shared utility)
+            // --- Re-iterating common functions for clarity in this file, but they ideally live in script.js ---
             // Function to get cart items from localStorage
             function getCartItems() {
                 return JSON.parse(localStorage.getItem('cartItems')) || [];
             }
+@@ -476,7 +636,7 @@ <h3 id="modal-title"></h3>
+                localStorage.setItem('cartItems', JSON.stringify(items));
+            }
 
+            // Function to update the cart count display (repeated for clarity, but ideally in a shared utility)
             // Function to update the cart count display in the header
             function updateCartCount() {
                 const cartCountElement = document.querySelector('.cart-count');
                 const cartItems = getCartItems();
-                const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-                if (totalItems > 0) {
-                    cartCountElement.textContent = totalItems;
-                    cartCountElement.style.display = 'inline-block';
-                } else {
+@@ -488,6 +648,8 @@ <h3 id="modal-title"></h3>
                     cartCountElement.style.display = 'none';
                 }
             }
             // --- End of common functions ---
 
-            // Function to render order summary items
-            function renderOrderSummary() {
-                const cartItems = getCartItems();
-                orderSummaryItemsContainer.innerHTML = ''; // Clear existing items
 
-                let subtotal = 0;
+            // Function to render cart items
+            function renderCart() {
+@@ -496,8 +658,18 @@ <h3 id="modal-title"></h3>
 
                 if (cartItems.length === 0) {
-                    emptyCartMessage.style.display = 'block'; // Show empty cart message
-                    orderSummaryItemsContainer.innerHTML = `<p id="empty-checkout-cart-message" style="text-align: center; margin-top: 20px; color: #888;">Your cart is empty! Please add items to your cart before proceeding to checkout.</p>`;
-
-                    if (placeOrderButton) { // Disable place order button if cart is empty
-                        placeOrderButton.disabled = true;
-                        placeOrderButton.style.opacity = 0.6;
-                        placeOrderButton.style.cursor = 'not-allowed';
+                    emptyCartRow.style.display = 'table-row'; // Show "Your cart is empty" message
+                    if (proceedToCheckoutButton) { // Disable button if cart is empty
+                        proceedToCheckoutButton.disabled = true;
+                        proceedToCheckoutButton.style.opacity = 0.6; // Optional: visual cue for disabled
+                        proceedToCheckoutButton.style.cursor = 'not-allowed';
                     }
-                    checkoutSubtotalElement.textContent = `$0.00`;
-                    checkoutTotalElement.textContent = `$0.00`;
                 } else {
-                    emptyCartMessage.style.display = 'none'; // Hide empty cart message
-                    orderSummaryItemsContainer.style.display = 'block'; // Ensure container is visible
-
-                    if (placeOrderButton) { // Enable place order button if cart has items
-                        placeOrderButton.disabled = false;
-                        placeOrderButton.style.opacity = 1;
-                        placeOrderButton.style.cursor = 'pointer';
+                    emptyCartRow.style.display = 'none'; // Hide the message
+                    if (proceedToCheckoutButton) { // Enable button if cart has items
+                        proceedToCheckoutButton.disabled = false;
+                        proceedToCheckoutButton.style.opacity = 1;
+                        proceedToCheckoutButton.style.cursor = 'pointer';
                     }
+                    let subtotal = 0;
 
                     cartItems.forEach(item => {
-                        // Ensure item.price is a number, default to 0 if not
-                        const price = parseFloat(item.price) || 0;
-                        const itemTotal = price * item.quantity;
-                        subtotal += itemTotal;
+@@ -507,8 +679,7 @@ <h3 id="modal-title"></h3>
 
-                        const itemDiv = document.createElement('div');
-                        itemDiv.classList.add('order-summary-item');
-                        itemDiv.innerHTML = `
-                            <div class="order-summary-item-details">
-                                <img src="${item.image}" alt="${item.name}">
-                                <div>
-                                    <span class="item-name">${item.name}</span><br>
-                                    <span class="item-quantity">Qty: ${item.quantity}</span>
-                                </div>
-                            </div>
-                            <div class="order-summary-item-price">$${itemTotal.toFixed(2)}</div>
-                        `;
-                        orderSummaryItemsContainer.appendChild(itemDiv);
-                    });
-
-                    checkoutSubtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-                    checkoutTotalElement.textContent = `$${subtotal.toFixed(2)}`; // Assuming free shipping for now
-                }
-                updateCartCount(); // Update the cart count in the header
+                        row.innerHTML = `
+                            <td><a href="#" class="remove-item" data-product-id="${item.id}"><i class="far fa-times-circle"></i></a></td>
+                            <td><img src="${item.imageUrl}" alt="${item.name}"></td>
+                            <td>${item.name}</td>
+                            <td><img src="${item.image}" alt="${item.name}"></td> <td>${item.name}</td>
+                            <td>$${item.price.toFixed(2)}</td>
+                            <td><input type="number" value="${item.quantity}" min="1" class="quantity-input" data-product-id="${item.id}"></td>
+                            <td>$${itemSubtotal.toFixed(2)}</td>
+@@ -559,6 +730,20 @@ <h3 id="modal-title"></h3>
+                });
             }
 
-            // Initial render of the order summary when the page loads
-            renderOrderSummary();
-
-            // Event listener for checkout form submission (for demonstration)
-            checkoutForm.addEventListener('submit', (event) => {
-                event.preventDefault(); // Prevent default form submission
-
-                // You would typically send this data to a server for order processing
-                const formData = new FormData(checkoutForm);
-                const orderDetails = {
-                    shippingInfo: {},
-                    items: getCartItems(),
-                    subtotal: parseFloat(checkoutSubtotalElement.textContent.replace('$', '')),
-                    total: parseFloat(checkoutTotalElement.textContent.replace('$', '')),
-                    paymentMethod: formData.get('paymentMethod')
-                };
-
-                for (let [key, value] of formData.entries()) {
-                    if (key !== 'paymentMethod') {
-                        orderDetails.shippingInfo[key] = value;
+            // Add event listener for the "Proceed to checkout" button
+            if (proceedToCheckoutButton) {
+                proceedToCheckoutButton.addEventListener('click', () => {
+                    const cartItems = getCartItems();
+                    if (cartItems.length > 0) {
+                        window.location.href = 'checkout.html'; // Redirect to the checkout page
+                    } else {
+                        // This alert should ideally not be reachable if the button is disabled,
+                        // but it acts as a safeguard.
+                        alert('Your cart is empty. Please add items before proceeding to checkout.');
                     }
-                }
+                });
+            }
 
-                console.log("Order Details:", orderDetails);
-                alert("Order placed successfully! (This is a demo, no actual order was processed.)");
-
-                // Clear the cart after successful order
-                localStorage.removeItem('cartItems');
-                renderOrderSummary(); // Re-render to show empty cart
-                updateCartCount(); // Update cart count in header
-            });
+            // Initial render of the cart when the page loads
+            renderCart();
         });
-    </script>
-</body>
-</html>
