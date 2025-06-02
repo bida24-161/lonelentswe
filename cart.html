@@ -211,7 +211,7 @@ Lone Beular Lentswe (External)
                 </tr>
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td id="cart-total"><strong>$0.00</strong></td>
+                    <td id="cart-total"><strong>BWP0.00</strong></td>
                 </tr>
             </table>
             <button class="normal" id="proceed-to-checkout-btn">Proceed to checkout</button>
@@ -318,16 +318,16 @@ Lone Beular Lentswe (External)
                         <td><a href="#" class="remove-item" data-product-id="BWP{item.id}"><i class="far fa-times-circle"></i></a></td>
                         <td><img src="BWP{imageUrl}" alt="BWP{item.name}" style="width:70px;height:auto;"></td>
                         <td>BWP{item.name}</td>
-                        <td>BWPBWP{item.price.toFixed(2)}</td>
+                        <td>BWP{item.price.toFixed(2)}</td>
                         <td><input type="number" value="BWP{item.quantity}" min="1" class="item-quantity" data-product-id="BWP{item.id}"></td>
-                        <td>BWPBWP{itemSubtotal.toFixed(2)}</td>
+                        <td>BWP{itemSubtotal.toFixed(2)}</td>
                     `;
                     cartItemsBody.appendChild(row);
                 });
             }
 
-            cartSubtotalElement.textContent = `BWPBWP{subtotal.toFixed(2)}`;
-            cartTotalElement.innerHTML = `<strong>BWPBWP{subtotal.toFixed(2)}</strong>`;
+            cartSubtotalElement.textContent = `BWP{subtotal.toFixed(2)}`;
+            cartTotalElement.innerHTML = `<strong>BWP{subtotal.toFixed(2)}</strong>`;
             updateCartCount();
         }
 
