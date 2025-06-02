@@ -39,7 +39,7 @@ addToCartButtons.forEach(button => {
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`${productName} added to cart!`); // Simple feedback
+        alert(`BWP{productName} added to cart!`); // Simple feedback
         // Optionally, update a cart icon counter here if you have one
     });
 });
@@ -81,8 +81,8 @@ if (deliveryInfoLink) {
     deliveryInfoLink.addEventListener('click', (e) => {
         e.preventDefault();
         openModal('Delivery Information',
-            '<p><strong>Standard Delivery:</strong> 3-5 business days. Free for orders over $100.</p>' +
-            '<p><strong>Express Delivery:</strong> 1-2 business days. Flat rate of $15.</p>' +
+            '<p><strong>Standard Delivery:</strong> 3-5 business days. Free for orders over BWP100.</p>' +
+            '<p><strong>Express Delivery:</strong> 1-2 business days. Flat rate of BWP15.</p>' +
             '<p>We ship internationally. International shipping times and costs vary by destination.</p>'
         );
     });
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const productElement = this.closest('.pro');
             const productImg = productElement.querySelector('img').src;
             const productName = productElement.querySelector('h5').textContent;
-            const productPrice = parseFloat(productElement.querySelector('h4').textContent.replace('$', ''));
+            const productPrice = parseFloat(productElement.querySelector('h4').textContent.replace('BWP', ''));
             
             // Generate a simple ID from the image path
             const productId = productImg.split('/').pop().split('.')[0];
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             // Show added notification
-            alert(`${productName} has been added to your cart!`);
+            alert(`BWP{productName} has been added to your cart!`);
         });
     });
     
