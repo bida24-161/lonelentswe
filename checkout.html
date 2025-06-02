@@ -684,8 +684,7 @@
                     items: getCartItems(),
                     subtotal: parseFloat(checkoutSubtotalElement.textContent.replace('$', '')),
                     total: parseFloat(checkoutTotalElement.textContent.replace('$', '')),
-                    paymentMethod: formData.get('paymentMethod'),
-                    orderDate: new Date().toISOString() // Add a timestamp
+                    paymentMethod: formData.get('paymentMethod')
                 };
 
                 for (let [key, value] of formData.entries()) {
@@ -694,15 +693,14 @@
                     }
                 }
 
-                // Save order details to sessionStorage before redirecting
-                sessionStorage.setItem('lastOrderDetails', JSON.stringify(orderDetails));
+                console.log("Order Details:", orderDetails);
+                alert("Order placed successfully! (This is a demo, no actual order was processed.)");
 
                 // Clear the cart and stored total after successful order
                 localStorage.removeItem('cartItems');
                 localStorage.removeItem('cartTotal'); // Clear the stored total too
-                
-                // Redirect to the order confirmation page
-                window.location.href = 'order-confirmation.html';
+                renderOrderSummary(); // Re-render to show empty cart
+                updateCartCount(); // Update cart count in header
             });
         });
     </script>
