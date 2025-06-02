@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - LONE's MINI BRANDHOUSE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <style>
+    <link rel="stylesheet" href="style.css">
+    <style>
         @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
         * {
@@ -280,7 +281,7 @@
             min-width: 300px; /* Minimum width for summary */
         }
 
-        h2 {
+        .checkout-form-section h2, .order-summary-section h2 {
             color: #333;
             margin-bottom: 25px;
             font-size: 28px;
@@ -515,7 +516,8 @@
                 </div>
                 <div>
                     <span>Shipping:</span>
-                    <span>Free</span> </div>
+                    <span>Free</span>
+                </div>
                 <div class="total">
                     <span>Order Total:</span>
                     <span id="checkout-total">$0.00</span>
@@ -609,10 +611,7 @@
 
                 if (cartItems.length === 0) {
                     emptyCartMessage.style.display = 'block'; // Show empty cart message
-                    // Hide any previous items and ensure the container is visually empty
-                    orderSummaryItemsContainer.style.display = 'block';
                     orderSummaryItemsContainer.innerHTML = `<p id="empty-checkout-cart-message" style="text-align: center; margin-top: 20px; color: #888;">Your cart is empty! Please add items to your cart before proceeding to checkout.</p>`;
-
 
                     if (placeOrderButton) { // Disable place order button if cart is empty
                         placeOrderButton.disabled = true;
@@ -632,20 +631,22 @@
                     }
 
                     cartItems.forEach(item => {
-                        const itemTotal = item.price * item.quantity;
+                        // Ensure item.price is a number, default to 0 if not
+                        const price = parseFloat(item.price) || 0;
+                        const itemTotal = price * item.quantity;
                         subtotal += itemTotal;
 
                         const itemDiv = document.createElement('div');
                         itemDiv.classList.add('order-summary-item');
                         itemDiv.innerHTML = `
                             <div class="order-summary-item-details">
-                                <img src="<span class="math-inline">\{item\.image\}" alt\="</span>{item.name}">
+                                <img src="${item.image}" alt="${item.name}">
                                 <div>
                                     <span class="item-name">${item.name}</span><br>
-                                    <span class="item-quantity">Qty: <span class="math-inline">\{item\.quantity\}</span\>
-</div\>
-</div\>
-<div class\="order\-summary\-item\-price"\></span>${itemTotal.toFixed(2)}</div>
+                                    <span class="item-quantity">Qty: ${item.quantity}</span>
+                                </div>
+                            </div>
+                            <div class="order-summary-item-price">$${itemTotal.toFixed(2)}</div>
                         `;
                         orderSummaryItemsContainer.appendChild(itemDiv);
                     });
@@ -653,4 +654,41 @@
                     checkoutSubtotalElement.textContent = `$${subtotal.toFixed(2)}`;
                     checkoutTotalElement.textContent = `$${subtotal.toFixed(2)}`; // Assuming free shipping for now
                 }
-                updateCartCount(); //
+                updateCartCount(); // Update the cart count in the header
+            }
+
+            // Initial render of the order summary when the page loads
+            renderOrderSummary();
+
+            // Event listener for checkout form submission (for demonstration)
+            checkoutForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                // You would typically send this data to a server for order processing
+                const formData = new FormData(checkoutForm);
+                const orderDetails = {
+                    shippingInfo: {},
+                    items: getCartItems(),
+                    subtotal: parseFloat(checkoutSubtotalElement.textContent.replace('$', '')),
+                    total: parseFloat(checkoutTotalElement.textContent.replace('$', '')),
+                    paymentMethod: formData.get('paymentMethod')
+                };
+
+                for (let [key, value] of formData.entries()) {
+                    if (key !== 'paymentMethod') {
+                        orderDetails.shippingInfo[key] = value;
+                    }
+                }
+
+                console.log("Order Details:", orderDetails);
+                alert("Order placed successfully! (This is a demo, no actual order was processed.)");
+
+                // Clear the cart after successful order
+                localStorage.removeItem('cartItems');
+                renderOrderSummary(); // Re-render to show empty cart
+                updateCartCount(); // Update cart count in header
+            });
+        });
+    </script>
+</body>
+</html>
