@@ -1,336 +1,10 @@
-  <meta charset="UTF-8">Add commentMore actions
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Shopping Cart - LONE's MINI BRANDHOUSE</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-</head>
-    <style>
-        /* Add these styles to your existing style.css file */
-
-/* Header & Navigation (ensure these styles are suitable for mobile too) */
-#header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 80px;
-    background: #e3e6f6;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-    z-index: 999;
-    position: sticky;
-    top: 0;
-    left: 0;
-}
-
-#navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#navbar li {
-    list-style: none;
-    padding: 0 20px;
-    position: relative;
-}
-
-#navbar li a {
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    color: #1a1a1a;
-    transition: 0.3s ease;
-}
-
-#navbar li a:hover,
-#navbar li a.active {
-    color: #088178;
-}
-
-#navbar li a.active::after,
-#navbar li a:hover::after {
-    content: "";
-    width: 30%;
-    height: 2px;
-    background: #088178;
-    position: absolute;
-    bottom: -4px;
-    left: 20px;
-}
-
-/* Mobile styles */
-#mobile {
-    display: none; /* Hide mobile icons by default for desktop */
-    align-items: center;
-}
-
-#mobile i {
-    color: #1a1a1a;
-    font-size: 24px;
-    padding-left: 20px;
-    cursor: pointer;
-}
-
-#close {
-    display: none; /* Hide close icon by default */
-}
-
-/* Cart Count Specific Styling */
-.cart-count {
-    background-color: #088178; /* Or any other color you prefer */
-    color: white;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 50%;
-    position: absolute;
-    top: -5px; /* Adjust as needed */
-    right: -10px; /* Adjust as needed */
-    display: none; /* Hidden by default, shown by JS if items exist */
-}
-
-/* Page Header */
-#page-header {
-    background-image: url("Image/banner/b1.jpg"); /* Or an appropriate image for cart page */
-    width: 100%;
-    height: 40vh;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    padding: 14px;
-}
-
-#page-header h2,
-#page-header p {
-    color: #fff;
-}
-
-/* Cart Section */
-#cart {
-    overflow-x: auto; /* For responsive tables on smaller screens */
-}
-
-#cart table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* Ensures columns maintain width */
-    white-space: nowrap;
-}
-
-#cart table img {
-    width: 70px;
-}
-
-#cart table td:nth-child(1) {
-    width: 100px;
-    text-align: center;
-}
-
-#cart table td:nth-child(2) {
-    width: 150px;
-    text-align: center;
-}
-
-#cart table td:nth-child(3) {
-    width: 250px;
-    text-align: center;
-}
-
-#cart table td:nth-child(4),
-#cart table td:nth-child(5),
-#cart table td:nth-child(6) {
-    width: 150px;
-    text-align: center;
-}
-
-#cart table td:nth-child(5) input {
-    width: 70px;
-    padding: 10px 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-}
-
-#cart table thead {
-    border: 1px solid #e2e9e1;
-    border-left: none;
-    border-right: none;
-}
-
-#cart table thead td {
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 13px;
-    padding: 18px 0;
-}
-
-#cart table tbody tr td {
-    padding-top: 15px;
-}
-
-#cart table tbody td {
-    font-size: 13px;
-}
-
-#cart .remove-item {
-    color: #f00; /* Red color for remove icon */
-    font-size: 18px;
-    cursor: pointer;
-}
-
-/* Cart Add Section (Coupon & Subtotal) */
-#cart-add {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 50px; /* Spacing from cart table */
-}
-
-#coupon {
-    width: 50%;
-    margin-bottom: 30px;
-}
-
-#coupon h3,
-#subtotal h3 {
-    padding-bottom: 15px;
-}
-
-#coupon input {
-    width: 60%;
-    padding: 10px 20px;
-    outline: none;
-    margin-right: 10px;
-    border: 1px solid #e2e9e1;
-    border-radius: 4px;
-}
-
-#coupon button,
-#subtotal button {
-    background-color: #088178;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-#subtotal {
-    width: 40%;
-    border: 1px solid #e2e9e1;
-    padding: 30px;
-    border-radius: 10px;
-}
-
-#subtotal table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-#subtotal table td {
-    padding: 10px;
-    border: 1px solid #e2e9e1;
-    font-size: 14px;
-}
-
-#subtotal table td:last-child {
-    text-align: right;
-}
-
-/* General button style (if you don't have it already) */
-.normal {
-    font-size: 14px;
-    font-weight: 600;
-    padding: 15px 30px;
-    color: #000;
-    background-color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    transition: 0.2s;
-}
-
-.normal:hover {
-    background-color: #088178;
-    color: #fff;
-}
-
-/* Section Padding (if you don't have it already) */
-.section-p1 {
-    padding: 40px 80px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 799px) {
-    #header {
-        padding: 20px 40px;
-    }
-
-    #navbar {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: fixed;
-        top: 0;
-        right: -300px; /* Hidden initially */
-        height: 100vh;
-        width: 300px;
-        background-color: #e3e6f6;
-        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
-        padding: 80px 0 0 10px;
-        transition: 0.3s ease;
-    }
-
-    #navbar.active {
-        right: 0px; /* Slide in */
-    }
-
-    #navbar li {
-        margin-bottom: 25px;
-    }
-
-    #mobile {
-        display: flex; /* Show mobile icons */
-    }
-
-    #close {
-        display: initial; /* Show close icon when navbar is active */
-        position: absolute;
-        top: 30px;
-        left: 30px;
-        color: #222;
-        font-size: 24px;
-    }
-
-    #lg-bag {
-        display: none; /* Hide desktop bag icon on mobile */
-    }
-
-    /* Cart Page Mobile Responsiveness */
-    #cart {
-        padding: 20px; /* Smaller padding on mobile */
-    }
-
-    #cart table {
-        table-layout: auto; /* Allow table to adjust */
-        width: 600px; /* Min width to prevent squishing */
-    }
-
-    #cart-add {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #coupon,
-    #subtotal {
-        width: 90%; /* Take more width on mobile */
-    }
-}
     <link rel="stylesheet" href="style.css"> <style>
         /* General styles (from your common style.css if not already there, but included for completeness) */
         @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
@@ -818,21 +492,126 @@
             }
         }
     </style>
-    
 </head>
 <body>
     <section id="header">
         <div class="header-logo">
-@@ -409,7 +566,7 @@ <h3>Cart Totals</h3>
+            <a href="index.html"><img src="./Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo"></a>
+        </div>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="coutact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+            <i id="close" class="fa-solid fa-times"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>#Cart</h2>
+        <p>Your ultimate destination for fashion!</p>
+    </section>
+
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody id="cart-items-container">
+                <tr id="empty-cart-row" style="display: none;">
+                    <td colspan="6" style="text-align: center; padding: 20px;">Your cart is empty. Go to <a href="shop.html">Shop</a> to add items!</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter Your Coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+
+        <div id="subtotal">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td id="cart-subtotal">$0.00</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
                     <td><strong id="cart-total">$0.00</strong></td>
                 </tr>
             </table>
-            <button class="normal">Proceed to checkout</button>
             <button class="normal" id="proceed-to-checkout-button">Proceed to checkout</button>
         </div>
     </section>
 
-@@ -458,15 +615,18 @@ <h3 id="modal-title"></h3>
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="Image/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address :</strong>1084 Mogoma Rd, Gaborone</p>
+            <p><strong>Phone :</strong>+267 74697684</p>
+            <p><strong>Hours:</strong>10:00 - 18:00. Mon - Sat</p>
+            <div class="follow">
+                <div>Follow us</div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook-square"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#" id="aboutUsLink">About us</a>
+            <a href="#" id="deliveryInfoLink">Delivery Information</a>
+            <a href="#" id="privacyPolicyLink">Privacy Policy</a>
+            <a href="#" id="termsConditionsLink">Terms & Conditions</a>
+            <a href="#" id="contactUsLink">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#" id="signInLink">Sign In</a>
+            <a href="cart.html" id="viewCartLink">View Cart</a>
+            <a href="#" id="myWaitlistLink">My Waitlist</a>
+            <a href="#" id="trackMyOrderLink">Track My Order</a>
+            <a href="#" id="helpLink">Help</a>
+        </div>
+    </footer>
+
+    <div id="modal-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
+        <div class="modal-content" style="background:white; padding:20px; border-radius:8px; max-width:500px; width:90%; box-shadow:0 5px 15px rgba(0,0,0,0.3); position:relative;">
+            <span class="close-button" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
@@ -846,22 +625,26 @@
             const emptyCartRow = document.getElementById('empty-cart-row');
             const proceedToCheckoutButton = document.getElementById('proceed-to-checkout-button'); // Get the button
 
-            // Function to get cart items from localStorage (repeated for clarity, but ideally in a shared utility)
             // --- Re-iterating common functions for clarity in this file, but they ideally live in script.js ---
             // Function to get cart items from localStorage
             function getCartItems() {
                 return JSON.parse(localStorage.getItem('cartItems')) || [];
             }
-@@ -476,7 +636,7 @@ <h3 id="modal-title"></h3>
+
+            // Function to save cart items to localStorage
+            function saveCartItems(items) {
                 localStorage.setItem('cartItems', JSON.stringify(items));
             }
 
-            // Function to update the cart count display (repeated for clarity, but ideally in a shared utility)
             // Function to update the cart count display in the header
             function updateCartCount() {
                 const cartCountElement = document.querySelector('.cart-count');
                 const cartItems = getCartItems();
-@@ -488,6 +648,8 @@ <h3 id="modal-title"></h3>
+                const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                if (totalItems > 0) {
+                    cartCountElement.textContent = totalItems;
+                    cartCountElement.style.display = 'inline-block';
+                } else {
                     cartCountElement.style.display = 'none';
                 }
             }
@@ -870,7 +653,8 @@
 
             // Function to render cart items
             function renderCart() {
-@@ -496,8 +658,18 @@ <h3 id="modal-title"></h3>
+                const cartItems = getCartItems();
+                cartItemsContainer.innerHTML = ''; // Clear existing items
 
                 if (cartItems.length === 0) {
                     emptyCartRow.style.display = 'table-row'; // Show "Your cart is empty" message
@@ -889,17 +673,60 @@
                     let subtotal = 0;
 
                     cartItems.forEach(item => {
-@@ -507,8 +679,7 @@ <h3 id="modal-title"></h3>
+                        const row = document.createElement('tr');
+                        const itemSubtotal = item.price * item.quantity;
+                        subtotal += itemSubtotal;
 
                         row.innerHTML = `
                             <td><a href="#" class="remove-item" data-product-id="${item.id}"><i class="far fa-times-circle"></i></a></td>
-                            <td><img src="${item.imageUrl}" alt="${item.name}"></td>
-                            <td>${item.name}</td>
                             <td><img src="${item.image}" alt="${item.name}"></td> <td>${item.name}</td>
                             <td>$${item.price.toFixed(2)}</td>
                             <td><input type="number" value="${item.quantity}" min="1" class="quantity-input" data-product-id="${item.id}"></td>
                             <td>$${itemSubtotal.toFixed(2)}</td>
-@@ -559,6 +730,20 @@ <h3 id="modal-title"></h3>
+                        `;
+                        cartItemsContainer.appendChild(row);
+                    });
+
+                    cartSubtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+                    cartTotalElement.textContent = `$${subtotal.toFixed(2)}`; // Assuming free shipping for now
+                }
+                attachCartEventListeners(); // Re-attach listeners after rendering
+                updateCartCount(); // Update count after rendering cart page
+            }
+
+            // Function to attach event listeners for remove and quantity change
+            function attachCartEventListeners() {
+                // Remove item
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const productId = e.currentTarget.dataset.productId;
+                        let cartItems = getCartItems();
+                        cartItems = cartItems.filter(item => item.id !== productId);
+                        saveCartItems(cartItems);
+                        renderCart(); // Re-render the cart
+                    });
+                });
+
+                // Quantity change
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        const productId = e.currentTarget.dataset.productId;
+                        const newQuantity = parseInt(e.currentTarget.value);
+                        if (newQuantity < 1 || isNaN(newQuantity)) {
+                            e.currentTarget.value = 1; // Reset to 1 if invalid
+                            return;
+                        }
+
+                        let cartItems = getCartItems();
+                        const itemIndex = cartItems.findIndex(item => item.id === productId);
+
+                        if (itemIndex > -1) {
+                            cartItems[itemIndex].quantity = newQuantity;
+                            saveCartItems(cartItems);
+                            renderCart(); // Re-render the cart to update subtotals
+                        }
+                    });
                 });
             }
 
@@ -920,3 +747,6 @@
             // Initial render of the cart when the page loads
             renderCart();
         });
+    </script>
+</body>
+</html>
