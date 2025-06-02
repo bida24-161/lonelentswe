@@ -302,18 +302,18 @@
 
                     row.innerHTML = `
                         <td><a href="#" class="remove-item" data-product-id="BWP{item.id}"><i class="far fa-times-circle"></i></a></td>
-                        <td><img src="BWP{imageUrl}" alt="BWP{item.name}" style="width:70px;height:auto;"></td>
-                        <td>BWP{item.name}</td>
-                        <td>BWP{item.price.toFixed(2)}</td>
-                        <td><input type="number" value="BWP{item.quantity}" min="1" class="item-quantity" data-product-id="BWP{item.id}"></td>
-                        <td>BWP{itemSubtotal.toFixed(2)}</td>
+                        <td><img src="${imageUrl}" alt="${item.name}" style="width:70px;height:auto;"></td>
+                        <td>${item.name}</td>
+                        <td>$${item.price.toFixed(2)}</td>
+                        <td><input type="number" value="${item.quantity}" min="1" class="item-quantity" data-product-id="BWP{item.id}"></td>
+                        <td>$${itemSubtotal.toFixed(2)}</td>
                     `;
                     cartItemsBody.appendChild(row);
                 });
             }
 
-            cartSubtotalElement.textContent = `BWP{subtotal.toFixed(2)}`;
-            cartTotalElement.innerHTML = `<strong>BWP{subtotal.toFixed(2)}</strong>`;
+            cartSubtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+            cartTotalElement.innerHTML = `<strong>$${subtotal.toFixed(2)}</strong>`;
             updateCartCount();
         }
 
