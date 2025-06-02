@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart - LONE's MINI BRANDHOUSE</title>
+    <title>Your Shopping Cart - LONE's MINI BRANDHOUSE</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="Image/favicon.ico"> </head>
+</head>
 <body>
     <section id="header">
         <div class="header-logo">
@@ -16,23 +16,21 @@
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-					 <li><a href="faq.html">FAQ</a></li>
-                <li id="lg-bag"><a class="active" href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
-                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+                <li><a href="coutact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="lg-bag"><a class="active" href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
             </ul>
         </div>
         <div id="mobile">
             <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
             <i id="bar" class="fa-solid fa-bars"></i>
-        </div>
+            <i id="close" class="fa-solid fa-times"></i> </div>
     </section>
 
-    <section id="page-header" class="cart-header" style="background-image: url('Image/banner/b1.jpg'); background-size: cover; background-position: center; padding: 100px 0; text-align: center; color: #fff;">
-        <h2 style="font-size: 46px; line-height: 64px;">#YourCart</h2>
-        <p style="font-size: 20px;">Review your selected items</p>
+    <section id="page-header" class="cart-header">
+        <h2>Your Shopping Cart</h2>
+        <p>Review your items before checkout!</p>
     </section>
 
     <section id="cart" class="section-p1">
@@ -47,10 +45,20 @@
                     <td>Subtotal</td>
                 </tr>
             </thead>
-            <tbody id="cart-items-body">
+            <tbody id="cart-items-container">
                 </tbody>
         </table>
-        <div id="cart-summary">
+    </section>
+
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter Your Coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+        <div id="subtotal">
             <h3>Cart Totals</h3>
             <table>
                 <tr>
@@ -59,11 +67,10 @@
                 </tr>
                 <tr>
                     <td>Shipping</td>
-                    <td>Free</td>
-                </tr>
+                    <td>Free</td> </tr>
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td id="cart-total"><strong>$0.00</strong></td>
+                    <td><strong id="cart-total">$0.00</strong></td>
                 </tr>
             </table>
             <button class="normal">Proceed to checkout</button>
@@ -72,207 +79,48 @@
 
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo">
-            <h4>Contact</h4>
-            <p><strong>Address :</strong>Wellington Road, Street 32. San Francisco</p>
-            <p><strong>Phone :</strong>Wellington Road, Street 32. San Francisco</p>
-            <p><strong>Hours:</strong>10:00 - 18:00. Mon - Sat</p>
-            <div class="follow">
-                <div>Follow us</div>
-                <div class="icon">
-                    <i class="fa-brands fa-facebook-square"></i>
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-telegram"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <h4>About</h4>
-            <a href="about.html">About us</a>
-            <a href="#" id="deliveryInfoLinkFooter">Delivery Information</a>
-            <a href="#" id="privacyPolicyLinkFooter">Privacy Policy</a>
-            <a href="#" id="termsConditionsLinkFooter">Terms & Conditions</a>
-            <a href="#" id="contactUsLinkFooter">Contact Us</a>
-        </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="signin.html">Sign In</a>
-            <a href="cart.html">View Cart</a>
-            <a href="waitlist.html">My Waitlist</a>
-            <a href="trackorder.html">Track My Order</a>
-            <a href="help.html">Help</a>
-        </div>
-
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App Store or Google Play</p>
-            <div class="row">
-                <img src="Image/pay/app.jpg" alt="App Store">
-                <img src="Image/pay/play.jpg" alt="Google Play">
-            </div>
-            <p>Secured payment Gateway</p>
-            <img src="Image/pay/pay.png" alt="Payment Gateways">
-        </div>
+           <img class="logo" src="Image/logo.png" alt="">
+           <h4>Contact</h4>
+           <p><strong>Address :</strong>1084 Mogoma Rd, Gaborone</p>
+           <p><strong>Phone :</strong>+267 74697684</p>
+           <p><strong>Hours:</strong>10:00 - 18:00. Mon - Sat</p>
+           <div class="follow">
+               <div>Follow us</div>
+               <div class="icon">
+               <i class="fa-brands fa-facebook-square"></i>
+                   <i class="fa-brands fa-youtube"></i>
+                   <i class="fa-brands fa-telegram"></i>
+                   <i class="fa-brands fa-instagram"></i>
+                   <i class="fa-brands fa-twitter"></i>
+               </div>
+           </div>
+       </div>
+       <div class="col">
+           <h4>About</h4>
+           <a href="#" id="aboutUsLink">About us</a>
+           <a href="#" id="deliveryInfoLink">Delivery Information</a>
+           <a href="#" id="privacyPolicyLink">Privacy Policy</a>
+           <a href="#" id="termsConditionsLink">Terms & Conditions</a>
+           <a href="#" id="contactUsLink">Contact Us</a>
+       </div>
+       <div class="col">
+           <h4>My Account</h4>
+           <a href="#" id="signInLink">Sign In</a>
+           <a href="cart.html" id="viewCartLink">View Cart</a>
+           <a href="#" id="myWaitlistLink">My Waitlist</a>
+           <a href="#" id="trackMyOrderLink">Track My Order</a>
+           <a href="#" id="helpLink">Help</a>
+       </div>
     </footer>
 
-    <div id="modal-container" class="modal-container">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2 id="modal-title"></h2>
+    <div id="modal-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
+        <div class="modal-content" style="background:white; padding:20px; border-radius:8px; max-width:500px; width:90%; box-shadow:0 5px 15px rgba(0,0,0,0.3); position:relative;">
+            <span class="close-button" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;">&times;</span>
+            <h3 id="modal-title"></h3>
             <div id="modal-body"></div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cartItemsBody = document.getElementById('cart-items-body');
-            const cartSubtotalElement = document.getElementById('cart-subtotal');
-            const cartTotalElement = document.getElementById('cart-total');
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            function renderCart() {
-                cartItemsBody.innerHTML = ''; // Clear existing items
-                let subtotal = 0;
-
-                if (cart.length === 0) {
-                    cartItemsBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 20px;">Your cart is empty.</td></tr>';
-                } else {
-                    cart.forEach(item => {
-                        const row = document.createElement('tr');
-                        const itemSubtotal = item.price * item.quantity;
-                        subtotal += itemSubtotal;
-
-                        // Adjusted image path based on your product structure.
-                        // You might need to adjust this further if your product images are not consistent.
-                        const imageUrl = item.id.startsWith('f') || item.id.startsWith('n') ? `Image/products/${item.id}.jpg` : `https://1to1.clothing/cdn/shop/files/${item.id.replace(/feat-|new-/, '')}_400x.png`;
-                        // Fallback or better logic for image paths is recommended if IDs don't map directly to local files or specific URLs.
-
-                        row.innerHTML = `
-                            <td><a href="#" class="remove-item" data-product-id="${item.id}"><i class="far fa-times-circle"></i></a></td>
-                            <td><img src="${imageUrl}" alt="${item.name}"></td>
-                            <td>${item.name}</td>
-                            <td>$${item.price.toFixed(2)}</td>
-                            <td><input type="number" value="${item.quantity}" min="1" class="item-quantity" data-product-id="${item.id}"></td>
-                            <td>$${itemSubtotal.toFixed(2)}</td>
-                        `;
-                        cartItemsBody.appendChild(row);
-                    });
-                }
-
-                cartSubtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-                cartTotalElement.textContent = `$${subtotal.toFixed(2)}`; // Assuming no separate shipping cost for now
-
-                // Add event listeners for remove buttons and quantity inputs
-                document.querySelectorAll('.remove-item').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const productId = e.target.closest('.remove-item').dataset.productId;
-                        cart = cart.filter(item => item.id !== productId);
-                        localStorage.setItem('cart', JSON.stringify(cart));
-                        renderCart();
-                    });
-                });
-
-                document.querySelectorAll('.item-quantity').forEach(input => {
-                    input.addEventListener('change', (e) => {
-                        const productId = e.target.dataset.productId;
-                        const newQuantity = parseInt(e.target.value);
-                        if (isNaN(newQuantity) || newQuantity < 1) {
-                            e.target.value = 1; // Reset to 1 if invalid
-                            const item = cart.find(item => item.id === productId);
-                            if (item) item.quantity = 1; // Update cart with valid quantity
-                            localStorage.setItem('cart', JSON.stringify(cart));
-                            renderCart();
-                            return;
-                        }
-                        const item = cart.find(item => item.id === productId);
-                        if (item) {
-                            item.quantity = newQuantity;
-                            localStorage.setItem('cart', JSON.stringify(cart));
-                            renderCart();
-                        }
-                    });
-                });
-            }
-
-            renderCart();
-
-            // Footer Pop-up Functionality for cart.html (re-defined or made global if desired)
-            const modalContainerCart = document.getElementById('modal-container');
-            const modalTitleCart = document.getElementById('modal-title');
-            const modalBodyCart = document.getElementById('modal-body');
-            const closeButtonCart = document.querySelector('.close-button');
-
-            function openModalCart(title, content) {
-                modalTitleCart.textContent = title;
-                modalBodyCart.innerHTML = content;
-                modalContainerCart.style.display = 'flex';
-            }
-
-            if (closeButtonCart) {
-                closeButtonCart.addEventListener('click', () => {
-                    modalContainerCart.style.display = 'none';
-                });
-            }
-
-            if (modalContainerCart) {
-                window.addEventListener('click', (event) => {
-                    if (event.target == modalContainerCart) {
-                        modalContainerCart.style.display = 'none';
-                    }
-                });
-            }
-
-
-            // Attach click listeners to footer links on cart.html
-            document.getElementById('deliveryInfoLinkFooter').addEventListener('click', (e) => {
-                e.preventDefault();
-                openModalCart('Delivery Information',
-                    '<p><strong>Standard Delivery:</strong> 3-5 business days. Free for orders over $100.</p>' +
-                    '<p><strong>Express Delivery:</strong> 1-2 business days. Flat rate of $15.</p>' +
-                    '<p>We ship internationally. International shipping times and costs vary by destination.</p>'
-                );
-            });
-
-            document.getElementById('privacyPolicyLinkFooter').addEventListener('click', (e) => {
-                e.preventDefault();
-                openModalCart('Privacy Policy',
-                    '<p>Your privacy is important to us. This policy explains how we collect, use, and protect your personal data.</p>' +
-                    '<ul>' +
-                    '<li>We collect information when you register, place an order, or subscribe to our newsletter.</li>' +
-                    '<li>We use your information to process transactions, send periodic emails, and improve our services.</li>' +
-                    '<li>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties.</li>' +
-                    '</ul>' +
-                    '<p>For more details, please refer to our full privacy policy document.</p>'
-                );
-            });
-
-            document.getElementById('termsConditionsLinkFooter').addEventListener('click', (e) => {
-                e.preventDefault();
-                openModalCart('Terms & Conditions',
-                    '<p>By using our website and services, you agree to comply with and be bound by the following terms and conditions:</p>' +
-                    '<ul>' +
-                    '<li>All content on this site is for your general information and use only. It is subject to change without notice.</li>' +
-                    '<li>Unauthorized use of this website may give rise to a claim for damages and/or be a criminal offense.</li>' +
-                    '<li>Your use of any information or materials on this website is entirely at your own risk.</li>' +
-                    '</ul>' +
-                    '<p>Please read our full terms and conditions carefully before proceeding.</p>'
-                );
-            });
-
-            document.getElementById('contactUsLinkFooter').addEventListener('click', (e) => {
-                e.preventDefault();
-                openModalCart('Contact Us',
-                    '<p>Have questions? Reach out to us!</p>' +
-                    '<p><strong>Email:</strong> support@lonebrandhouse.com</p>' +
-                    '<p><strong>Phone:</strong> +267 74697684</p>' +
-                    '<p><strong>Address:</strong> 1984 Mogoma Rd, Gaborone</p>' +
-                    '<p><strong>Business Hours:</strong> Monday - Saturday, 10:00 AM - 6:00 PM</p>'
-                );
-            });
-        });
-    </script>
-</body>
+    <script src="script.js"></script> <script src="cart.js"></script> </body>
 </html>
