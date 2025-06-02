@@ -39,7 +39,7 @@ addToCartButtons.forEach(button => {
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`BWP{productName} added to cart!`); // Simple feedback
+        alert(`${productName} added to cart!`); // Simple feedback
         // Optionally, update a cart icon counter here if you have one
     });
 });
@@ -124,7 +124,7 @@ if (contactUsLink) {
         openModal('Contact Us',
             '<p>Have questions? Reach out to us!</p>' +
             '<p><strong>Email:</strong> support@lonebrandhouse.com</p>' +
-            '<p><strong>Phone:</strong> +267 74697684</p>' +
+            '<p><strong>Phone:</strong> +267 746976847</p>' +
             '<p><strong>Address:</strong> 1084 Mogoma Rd, Gaborone</p>' +
             '<p><strong>Business Hours:</strong> Monday - Saturday, 10:00 AM - 6:00 PM</p>'
         );
@@ -133,83 +133,3 @@ if (contactUsLink) {
 
 // Mobile Navbar functionality (already present but good to keep)
 // This part is already handled at the top of the script.
-
-// Add to cart functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click event to all "Add to Cart" buttons
-    document.querySelectorAll('.buy-icon').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation(); // Prevent triggering the product click
-            
-            const productElement = this.closest('.pro');
-            const productImg = productElement.querySelector('img').src;
-            const productName = productElement.querySelector('h5').textContent;
-            const productPrice = parseFloat(productElement.querySelector('h4').textContent.replace('BWP', ''));
-            
-            // Generate a simple ID from the image path
-            const productId = productImg.split('/').pop().split('.')[0];
-            
-            // Add to cart
-            addToCart({
-                id: productId,
-                name: productName,
-                price: productPrice,
-                quantity: 1,
-                image: productImg
-            });
-            
-            // Show added notification
-            alert(`BWP{productName} has been added to your cart!`);
-        });
-    });
-    
-    // Mobile menu toggle
-    const bar = document.getElementById('bar');
-    const close = document.getElementById('close');
-    const navbar = document.getElementById('navbar');
-    
-    if (bar) {
-        bar.addEventListener('click', () => {
-            navbar.classList.add('active');
-        });
-    }
-    
-    if (close) {
-        close.addEventListener('click', () => {
-            navbar.classList.remove('active');
-        });
-    }
-    
-    // Update cart count on page load
-    updateCartCount();
-});
-
-// Add item to cart
-function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-    // Check if product already in cart
-    const existingItem = cart.find(item => item.id === product.id);
-    
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push(product);
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-}
-
-// Update cart count in navbar
-function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-    const cartCountElements = document.querySelectorAll('.cart-count');
-    
-    cartCountElements.forEach(el => {
-        el.textContent = totalItems;
-        el.style.display = totalItems > 0 ? 'inline-block' : 'none';
-    });
-}
