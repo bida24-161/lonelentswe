@@ -24,37 +24,6 @@
         display: none;
     }
 }/* Cart Page Styles */
-/* style.css */
-
-.cart-count {
-    background-color: #ff0000; /* Red circle */
-    color: white;
-    border-radius: 50%; /* Makes it a circle */
-    padding: 2px 6px;
-    font-size: 0.7em;
-    position: absolute;
-    top: -5px; /* Adjust as needed */
-    right: -10px; /* Adjust as needed */
-    display: none; /* Hidden by default, shown when items are in cart */
-}
-
-/* For mobile cart icon if you want a count badge */
-#mobile a .fa-bag-shopping {
-    position: relative;
-}
-
-#mobile a .fa-bag-shopping::after {
-    content: attr(data-count);
-    background-color: #ff0000;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.7em;
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    display: var(--display-mobile-cart-count, none); /* Controlled by JS */
-}
 #cart table {
     width: 100%;
     border-collapse: collapse;
