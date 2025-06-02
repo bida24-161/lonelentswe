@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - LONE's MINI BRANDHOUSE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        /* General styles (from your common style.css) */
+        @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Spartan", sans-serif;
+        }
+
+        h1 {
+            font-size: 50px;
+            line-height: 64px;
+            color: #222;
+        }
+
+        h2 {
+            font-size: 46px;
+            line-height: 54px;
+            color: #222;
+        }
+
+        h4 {
+            font-size: 20px;
+            color: #222;
+        }
+
+        h6 {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #465b52;
+            margin: 15px 0 20px 0;
+        }
+
+        .section-p1 {
+            padding: 40px 80px;
+        }
+
+        .section-m1 {
+            margin: 40px 0;
+        }
+
+        button.normal {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 15px 30px;
+            color: #000;
+            background-color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        button.white {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 11px 18px;
+            color: #fff;
+            background-color: transparent;
+            cursor: pointer;
+            border: 1px solid #fff;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        body {
+            width: 100%;
+        }
+
+        /* Header & Navigation */
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 80px;
+            background: #e3e6f6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            z-index: 999;
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+
+        .header-logo img {
+            height: 40px; /* Adjust as per your logo size */
+        }
+
+        #navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #navbar li {
+            list-style: none;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        #navbar li a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: 0.3s ease;
+        }
+
+        #navbar li a:hover,
+        #navbar li a.active {
+            color: #088178;
+        }
+
+        #navbar li a.active::after,
+        #navbar li a:hover::after {
+            content: "";
+            width: 30%;
+            height: 2px;
+            background: #088178;
+            position: absolute;
+            bottom: -4px;
+            left: 20px;
+        }
+
+        /* Mobile styles */
+        #mobile {
+            display: none;
+            align-items: center;
+        }
+
+        #mobile i {
+            color: #1a1a1a;
+            font-size: 24px;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+
+        #close {
+            display: none;
+        }
+
+        /* Cart Count Specific Styling */
+        .cart-count {
+            background-color: #088178;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            display: none;
+        }
+
+        /* Page Header */
+        #page-header {
+            background-image: url("Image/banner/b1.jpg"); /* Ensure this path is correct */
+            width: 100%;
+            height: 40vh;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 14px;
+        }
+
+        #page-header h2,
+        #page-header p {
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        footer .col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        footer .logo {
+            margin-bottom: 30px;
+            height: 40px; /* Adjust as per your logo size */
+        }
+
+        footer h4 {
+            font-size: 14px;
+            padding-bottom: 20px;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 0 0 8px 0;
+        }
+
+        footer a {
+            font-size: 13px;
+            text-decoration: none;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        footer .follow {
+            margin-top: 20px;
+        }
+
+        footer .follow i {
+            color: #465b52;
+            padding-right: 4px;
+            cursor: pointer;
+        }
+
+        footer .follow i:hover,
+        footer a:hover {
+            color: #088178;
+        }
+
+        /* Modal Styles */
+        #modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Checkout Section Specific Styles (from previous response) */
+        #checkout {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .checkout-form {
+            width: 60%;
+            padding: 20px;
+            border: 1px solid #e2e9e1;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .checkout-form h3,
+        .order-summary h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .shipping-methods,
+        .payment-methods {
+            margin-bottom: 30px;
+        }
+
+        .radio-group {
+            margin-bottom: 10px;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .radio-group label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .order-summary {
+            width: 35%;
+            padding: 20px;
+            border: 1px solid #e2e9e1;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .summary-item:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .summary-total {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e9e1;
+        }
+
+        .summary-total p {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .summary-total h4 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        #place-order-button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 18px;
+            background-color: #088178;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #place-order-button:hover {
+            background-color: #065f57;
+        }
+
+        #place-order-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 799px) {
+            .section-p1 {
+                padding: 20px;
+            }
+
+            #header {
+                padding: 20px 40px;
+            }
+
+            #navbar {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                position: fixed;
+                top: 0;
+                right: -300px;
+                height: 100vh;
+                width: 300px;
+                background-color: #e3e6f6;
+                box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+                padding: 80px 0 0 10px;
+                transition: 0.3s ease;
+            }
+
+            #navbar.active {
+                right: 0px;
+            }
+
+            #navbar li {
+                margin-bottom: 25px;
+            }
+
+            #mobile {
+                display: flex;
+            }
+
+            #close {
+                display: initial;
+                position: absolute;
+                top: 30px;
+                left: 30px;
+                color: #222;
+                font-size: 24px;
+            }
+
+            #lg-bag {
+                display: none;
+            }
+
+            /* Checkout Page Mobile Responsiveness */
+            #checkout {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .checkout-form,
+            .order-summary {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="header">
+        <div class="header-logo">
+            <a href="index.html"><img src="./Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo"></a>
+        </div>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="coutact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+            <i id="close" class="fa-solid fa-times"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>#Checkout</h2>
+        <p>Complete your purchase with ease!</p>
+    </section>
+
+    <section id="checkout" class="section-p1">
+        <div class="checkout-form">
+            <h3>Shipping Information</h3>
+            <form id="shipping-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address Line 1:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="address2">Address Line 2 (Optional):</label>
+                    <input type="text" id="address2" name="address2">
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="state">State/Province:</label>
+                    <input type="text" id="state" name="state" required>
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">Zip/Postal Code:</label>
+                    <input type="text" id="zipCode" name="zipCode" required>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" value="Botswana" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+            </form>
+
+            <h3>Shipping Method</h3>
+            <div class="shipping-methods">
+                <div class="radio-group">
+                    <input type="radio" id="standardShipping" name="shippingMethod" value="standard" checked>
+                    <label for="standardShipping">Standard Shipping (3-5 business days) - Free</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="expressShipping" name="shippingMethod" value="express">
+                    <label for="expressShipping">Express Shipping (1-2 business days) - $10.00</label>
+                </div>
+            </div>
+
+            <h3>Payment Information</h3>
+            <div class="payment-methods">
+                <div class="radio-group">
+                    <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cod" checked>
+                    <label for="cashOnDelivery">Cash on Delivery</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="summary-items">
+                </div>
+            <div class="summary-total">
+                <p>Subtotal: <span id="summary-subtotal">$0.00</span></p>
+                <p>Shipping: <span id="summary-shipping">$0.00</span></p>
+                <h4>Total: <span id="summary-total">$0.00</span></h4>
+            </div>
+            <button class="normal" id="place-order-button">Place Order</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="Image/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address :</strong>1084 Mogoma Rd, Gaborone</p>
+            <p><strong>Phone :</strong>+267 74697684</p>
+            <p><strong>Hours:</strong>10:00 - 18:00. Mon - Sat</p>
+            <div class="follow">
+                <div>Follow us</div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook-square"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#" id="aboutUsLink">About us</a>
+            <a href="#" id="deliveryInfoLink">Delivery Information</a>
+            <a href="#" id="privacyPolicyLink">Privacy Policy</a>
+            <a href="#" id="termsConditionsLink">Terms & Conditions</a>
+            <a href="#" id="contactUsLink">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#" id="signInLink">Sign In</a>
+            <a href="cart.html" id="viewCartLink">View Cart</a>
+            <a href="#" id="myWaitlistLink">My Waitlist</a>
+            <a href="#" id="trackMyOrderLink">Track My Order</a>
+            <a href="#" id="helpLink">Help</a>
+        </div>
+    </footer>
+
+    <div id="modal-container" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
+        <div class="modal-content" style="background:white; padding:20px; border-radius:8px; max-width:500px; width:90%; box-shadow:0 5px 15px rgba(0,0,0,0.3); position:relative;">
+            <span class="close-button" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // JavaScript for checkout.html specific logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const summaryItemsContainer = document.getElementById('summary-items');
+            const summarySubtotalElement = document.getElementById('summary-subtotal');
+            const summaryShippingElement = document.getElementById('summary-shipping');
+            const summaryTotalElement = document.getElementById('summary-total');
+            const shippingMethodRadios = document.querySelectorAll('input[name="shippingMethod"]');
+            const placeOrderButton = document.getElementById('place-order-button');
+
+            const expressShippingCost = 10.00; // Define express shipping cost
+
+            // Function to get cart items from localStorage (can be shared)
+            function getCartItems() {
+                return JSON.parse(localStorage.getItem('cartItems')) || [];
+            }
+
+            // Function to save cart items to localStorage (can be shared)
+            function saveCartItems(items) {
+                localStorage.setItem('cartItems', JSON.stringify(items));
+            }
+
+            // Function to update the cart count display (can be shared)
+            function updateCartCount() {
+                const cartCountElement = document.querySelector('.cart-count');
+                const cartItems = getCartItems();
+                const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                if (totalItems > 0) {
+                    cartCountElement.textContent = totalItems;
+                    cartCountElement.style.display = 'inline-block';
+                } else {
+                    cartCountElement.style.display = 'none';
+                }
+            }
+
+            // Function to render order summary
+            function renderOrderSummary() {
+                const cartItems = getCartItems();
+                summaryItemsContainer.innerHTML = ''; // Clear existing items
+
+                if (cartItems.length === 0) {
+                    summaryItemsContainer.innerHTML = '<p>Your cart is empty. Please add items to proceed to checkout.</p
