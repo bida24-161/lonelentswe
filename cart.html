@@ -573,6 +573,9 @@
 
     <script src="script.js"></script>
     <script>
+        // In cart.html's script or your main script.js if it handles cart logic
+// Assuming 'subtotal' is your calculated cart total
+localStorage.setItem('cartTotal', subtotal.toFixed(2));
         // JavaScript for checkout.html specific logic
         document.addEventListener('DOMContentLoaded', () => {
             const orderSummaryItemsContainer = document.getElementById('order-summary-items');
