@@ -125,7 +125,7 @@ if (contactUsLink) {
             '<p>Have questions? Reach out to us!</p>' +
             '<p><strong>Email:</strong> support@lonebrandhouse.com</p>' +
             '<p><strong>Phone:</strong> +267 74697684</p>' +
-            '<p><strong>Address:</strong> 1084 Mogoma Rd, Gborone</p>' +
+            '<p><strong>Address:</strong> 1084 Mogoma Rd, Gaborone</p>' +
             '<p><strong>Business Hours:</strong> Monday - Saturday, 10:00 AM - 6:00 PM</p>'
         );
     });
