@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Confirmation - LONE's MINI BRANDHOUSE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Spartan", sans-serif;
+        }
+
+        h1 {
+            font-size: 50px;
+            line-height: 64px;
+            color: #222;
+        }
+
+        h2 {
+            font-size: 46px;
+            line-height: 54px;
+            color: #222;
+        }
+
+        h4 {
+            font-size: 20px;
+            color: #222;
+        }
+
+        h6 {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #465b52;
+            margin: 15px 0 20px 0;
+        }
+
+        .section-p1 {
+            padding: 40px 80px;
+        }
+
+        .section-m1 {
+            margin: 40px 0;
+        }
+
+        button.normal {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 15px 30px;
+            color: #000;
+            background-color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        button.white {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 11px 18px;
+            color: #fff;
+            background-color: transparent;
+            cursor: pointer;
+            border: 1px solid #fff;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        body {
+            width: 100%;
+            display: flex; /* For pushing footer down */
+            flex-direction: column;
+            min-height: 100vh; /* Ensure page takes full viewport height */
+        }
+
+        /* Header & Navigation (Common) */
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 80px;
+            background: #e3e6f6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            z-index: 999;
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+
+        .header-logo img {
+            height: 40px; /* Adjust as per your logo size */
+        }
+
+        #navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #navbar li {
+            list-style: none;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        #navbar li a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: 0.3s ease;
+        }
+
+        #navbar li a:hover,
+        #navbar li a.active {
+            color: #088178;
+        }
+
+        #navbar li a.active::after,
+        #navbar li a:hover::after {
+            content: "";
+            width: 30%;
+            height: 2px;
+            background: #088178;
+            position: absolute;
+            bottom: -4px;
+            left: 20px;
+        }
+
+        /* Mobile styles */
+        #mobile {
+            display: none;
+            align-items: center;
+        }
+
+        #mobile i {
+            color: #1a1a1a;
+            font-size: 24px;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+
+        #close {
+            display: none;
+        }
+
+        /* Cart Count Specific Styling */
+        /* Cart count requires JavaScript to update, so it won't function here without it. */
+        .cart-count {
+            background-color: #088178;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            display: none; /* Hide by default without JS to update it */
+        }
+
+        /* Footer (Common) */
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 40px 80px; /* Adjust as per section-p1 */
+            background-color: #f8f8f8; /* Light background for footer */
+            border-top: 1px solid #e2e9e1;
+            margin-top: auto; /* Push footer to bottom if content is short */
+        }
+
+        footer .col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        footer .logo {
+            margin-bottom: 30px;
+            height: 40px; /* Adjust as per your logo size */
+        }
+
+        footer h4 {
+            font-size: 14px;
+            padding-bottom: 20px;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 0 0 8px 0;
+        }
+
+        footer a {
+            font-size: 13px;
+            text-decoration: none;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        footer .follow {
+            margin-top: 20px;
+        }
+
+        footer .follow i {
+            color: #465b52;
+            padding-right: 4px;
+            cursor: pointer;
+        }
+
+        footer .follow i:hover,
+        footer a:hover {
+            color: #088178;
+        }
+
+        /* Confirmation Page Specific Styles (similar to order confirmation for consistency) */
+        body {
+            background-color: #f4f4f4;
+        }
+        .confirmation-container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex-grow: 1; /* Allow container to grow and push footer */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center content if container is tall */
+        }
+        .confirmation-container h2 {
+            color: #088178;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .confirmation-container p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .back-home-button {
+            background-color: #088178;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            text-decoration: none; /* For the <a> tag */
+            display: inline-block; /* For proper padding and margin */
+        }
+        .back-home-button:hover {
+            background-color: #06665e;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 799px) {
+            .confirmation-container {
+                margin: 20px;
+                padding: 20px;
+            }
+            .confirmation-container h2 {
+                font-size: 28px;
+            }
+            .confirmation-container p {
+                font-size: 16px;
+            }
+            #header, footer {
+                padding: 20px 40px;
+            }
+        }
+        @media (max-width: 477px) {
+            #header, footer {
+                padding: 15px 20px;
+            }
+            .confirmation-container {
+                padding: 15px;
+            }
+            .confirmation-container h2 {
+                font-size: 24px;
+            }
+            .confirmation-container p {
+                font-size: 14px;
+            }
+            .back-home-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="header">
+        <div class="header-logo">
+            <a href="index.html"><img src="./Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo"></a>
+        </div>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" style="display:none;"></span></a></li>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+
+    <div class="confirmation-container">
+        <h2><i class="fas fa-check-circle" style="color: #088178; margin-right: 10px;"></i> Message Sent!</h2>
+        <p>Thank you for reaching out to LONE's MINI BRANDHOUSE. We appreciate your feedback and will get back to you shortly.</p>
+        <a href="index.html" class="back-home-button">Back to Home</a>
+    </div>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="Image/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address :</strong> 1084 Mogoma Rd, Gaborone</p>
+            <p><strong>Phone :</strong> +267 74697684</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <div>Follow us</div>
+                <div class="icon">
+                    <i class="fa-brands fa-facebook-square"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        
+    </footer>
+
+    </body>
+</html>
