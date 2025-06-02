@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - LONE's MINI BRANDHOUSE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* General styles (from your common style.css) */
         @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
         * {
@@ -167,29 +166,14 @@
             display: none;
         }
 
-        /* Page Header */
-        #page-header {
-            background-image: url("Image/banner/b1.jpg"); /* Ensure this path is correct */
-            width: 100%;
-            height: 40vh;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            flex-direction: column;
-            padding: 14px;
-        }
-
-        #page-header h2,
-        #page-header p {
-            color: #fff;
-        }
-
         /* Footer */
         footer {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            padding: 40px 80px; /* Adjust as per section-p1 */
+            background-color: #f8f8f8; /* Light background for footer */
+            border-top: 1px solid #e2e9e1;
         }
 
         footer .col {
@@ -268,195 +252,184 @@
             cursor: pointer;
         }
 
-        /* Checkout Section Specific Styles (from previous response) */
-        #checkout {
+        /* Checkout Page Specific Styles */
+        body {
+            background-color: #f4f4f4; /* Light background for the page */
+        }
+        .container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
-            align-items: flex-start;
+            padding: 40px 80px; /* Matches section-p1 */
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 30px; /* Space between sections */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            align-items: flex-start; /* Align items to the top */
+        }
+        .checkout-form-section, .order-summary-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .checkout-form-section {
+            flex: 2; /* Takes more space */
+            min-width: 400px; /* Minimum width for form */
+        }
+        .order-summary-section {
+            flex: 1; /* Takes less space */
+            min-width: 300px; /* Minimum width for summary */
         }
 
-        .checkout-form {
-            width: 60%;
-            padding: 20px;
-            border: 1px solid #e2e9e1;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .checkout-form h3,
-        .order-summary h3 {
-            margin-bottom: 20px;
-            font-size: 20px;
+        .checkout-form-section h2, .order-summary-section h2 {
             color: #333;
+            margin-bottom: 25px;
+            font-size: 28px;
         }
 
-        .form-group {
+        /* Order Summary Items */
+        #order-summary-items {
+            margin-bottom: 20px;
+            max-height: 400px; /* Limit height for scroll if many items */
+            overflow-y: auto; /* Enable scrolling */
+        }
+
+        .order-summary-item {
+            display: flex;
+            align-items: center;
             margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee; /* Dotted line between items */
+        }
+        .order-summary-item:last-child {
+            border-bottom: none; /* No border for the last item */
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
+        .order-summary-item-details {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        .order-summary-item-details img {
+            width: 60px; /* Larger image in summary */
+            height: 60px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        .order-summary-item-details span {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.4;
+        }
+        .order-summary-item-details .item-name {
+            font-weight: 600;
+        }
+        .order-summary-item-details .item-quantity {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .order-summary-item-price {
+            font-weight: bold;
+            font-size: 16px;
+            color: #088178; /* Highlight price */
+        }
+
+        /* Totals */
+        .order-totals {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .order-totals div {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+        .order-totals .total {
+            font-weight: bold;
+            font-size: 20px;
+            border-top: 2px solid #088178; /* Stronger border for total */
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+        .order-totals .shipping-note {
+            font-size: 13px;
+            color: #666;
+            text-align: right;
+            padding-top: 5px;
+        }
+
+        /* Checkout Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 600;
-            color: #555;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        .shipping-methods,
-        .payment-methods {
-            margin-bottom: 30px;
-        }
-
-        .radio-group {
-            margin-bottom: 10px;
-        }
-
-        .radio-group input[type="radio"] {
-            margin-right: 10px;
-        }
-
-        .radio-group label {
-            font-size: 16px;
             color: #333;
         }
-
-        .order-summary {
-            width: 35%;
-            padding: 20px;
-            border: 1px solid #e2e9e1;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 1px dashed #eee;
-        }
-
-        .summary-item:last-of-type {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .summary-total {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #e2e9e1;
-        }
-
-        .summary-total p {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-
-        .summary-total h4 {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-weight: 700;
-            margin-top: 15px;
-        }
-
-        #place-order-button {
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select {
             width: 100%;
-            margin-top: 20px;
-            padding: 15px;
-            font-size: 18px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding in width */
+            font-size: 15px;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #088178;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(8, 129, 120, 0.2);
+        }
+
+        button.place-order-button {
             background-color: #088178;
             color: #fff;
+            padding: 15px 30px;
             border: none;
             border-radius: 4px;
+            font-size: 18px;
             cursor: pointer;
-            transition: 0.2s;
+            width: 100%;
+            margin-top: 25px;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
         }
-
-        #place-order-button:hover {
-            background-color: #065f57;
+        button.place-order-button:hover:not(:disabled) {
+            background-color: #06665e;
         }
-
-        #place-order-button:disabled {
-            background-color: #cccccc;
+        button.place-order-button:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
         }
 
-
-        /* Responsive adjustments */
+        /* Responsive adjustments for checkout */
         @media (max-width: 799px) {
-            .section-p1 {
-                padding: 20px;
+            .container {
+                flex-direction: column;
+                padding: 20px; /* Smaller padding */
+                margin: 10px auto;
             }
-
+            .checkout-form-section, .order-summary-section {
+                min-width: unset; /* Remove min-width */
+                width: 100%;
+                padding: 20px; /* Smaller padding */
+            }
             #header {
                 padding: 20px 40px;
             }
-
-            #navbar {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: flex-start;
-                position: fixed;
-                top: 0;
-                right: -300px;
-                height: 100vh;
-                width: 300px;
-                background-color: #e3e6f6;
-                box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
-                padding: 80px 0 0 10px;
-                transition: 0.3s ease;
-            }
-
-            #navbar.active {
-                right: 0px;
-            }
-
-            #navbar li {
-                margin-bottom: 25px;
-            }
-
-            #mobile {
-                display: flex;
-            }
-
-            #close {
-                display: initial;
-                position: absolute;
-                top: 30px;
-                left: 30px;
-                color: #222;
-                font-size: 24px;
-            }
-
-            #lg-bag {
-                display: none;
-            }
-
-            /* Checkout Page Mobile Responsiveness */
-            #checkout {
-                flex-direction: column;
-                padding: 20px;
-            }
-
-            .checkout-form,
-            .order-summary {
-                width: 100%;
-                margin-bottom: 30px;
+            footer {
+                padding: 20px 40px;
             }
         }
     </style>
@@ -484,90 +457,79 @@
         </div>
     </section>
 
-    <section id="page-header" class="about-header">
-        <h2>#Checkout</h2>
-        <p>Complete your purchase with ease!</p>
-    </section>
-
-    <section id="checkout" class="section-p1">
-        <div class="checkout-form">
-            <h3>Shipping Information</h3>
-            <form id="shipping-form">
+    <div class="container">
+        <section class="checkout-form-section">
+            <h2>Shipping Information</h2>
+            <form id="checkout-form">
                 <div class="form-group">
-                    <label for="fullName">Full Name:</label>
+                    <label for="fullName">Full Name</label>
                     <input type="text" id="fullName" name="fullName" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
+                    <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="address">Address Line 1:</label>
-                    <input type="text" id="address" name="address" required>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
                 </div>
                 <div class="form-group">
-                    <label for="address2">Address Line 2 (Optional):</label>
-                    <input type="text" id="address2" name="address2">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Street Address, House Number" required>
                 </div>
                 <div class="form-group">
-                    <label for="city">City:</label>
+                    <label for="city">City</label>
                     <input type="text" id="city" name="city" required>
                 </div>
                 <div class="form-group">
-                    <label for="state">State/Province:</label>
-                    <input type="text" id="state" name="state" required>
+                    <label for="zip">Zip Code</label>
+                    <input type="text" id="zip" name="zip" required>
                 </div>
                 <div class="form-group">
-                    <label for="zipCode">Zip/Postal Code:</label>
-                    <input type="text" id="zipCode" name="zipCode" required>
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required>
+                        <option value="Botswana" selected>Botswana</option>
+                        </select>
                 </div>
+
+                <h3>Payment Method</h3>
                 <div class="form-group">
-                    <label for="country">Country:</label>
-                    <input type="text" id="country" name="country" value="Botswana" required>
+                    <label>
+                        <input type="radio" name="paymentMethod" value="cashOnDelivery" checked> Cash on Delivery
+                    </label>
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
+                <button type="submit" class="place-order-button">Place Order</button>
             </form>
+        </section>
 
-            <h3>Shipping Method</h3>
-            <div class="shipping-methods">
-                <div class="radio-group">
-                    <input type="radio" id="standardShipping" name="shippingMethod" value="standard" checked>
-                    <label for="standardShipping">Standard Shipping (3-5 business days) - Free</label>
-                </div>
-                <div class="radio-group">
-                    <input type="radio" id="expressShipping" name="shippingMethod" value="express">
-                    <label for="expressShipping">Express Shipping (1-2 business days) - $10.00</label>
-                </div>
+        <section class="order-summary-section">
+            <h2>Order Summary</h2>
+            <div id="order-summary-items">
+                <p id="empty-checkout-cart-message" style="text-align: center; margin-top: 20px; color: #888; display: none;">
+                    Your cart is empty! Please add items to your cart before proceeding to checkout.
+                </p>
             </div>
-
-            <h3>Payment Information</h3>
-            <div class="payment-methods">
-                <div class="radio-group">
-                    <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cod" checked>
-                    <label for="cashOnDelivery">Cash on Delivery</label>
+            <div class="order-totals">
+                <div>
+                    <span>Subtotal:</span>
+                    <span id="checkout-subtotal">$0.00</span>
                 </div>
-            </div>
-        </div>
-
-        <div class="order-summary">
-            <h3>Order Summary</h3>
-            <div id="summary-items">
+                <div>
+                    <span>Shipping:</span>
+                    <span>Free</span>
                 </div>
-            <div class="summary-total">
-                <p>Subtotal: <span id="summary-subtotal">$0.00</span></p>
-                <p>Shipping: <span id="summary-shipping">$0.00</span></p>
-                <h4>Total: <span id="summary-total">$0.00</span></h4>
+                <div class="total">
+                    <span>Order Total:</span>
+                    <span id="checkout-total">$0.00</span>
+                </div>
+                <p class="shipping-note">Shipping is currently free.</p>
             </div>
-            <button class="normal" id="place-order-button">Place Order</button>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="Image/logo.png" alt="">
+            <img class="logo" src="Image/logo.png" alt="LONE's MINI BRANDHOUSE Logo">
             <h4>Contact</h4>
             <p><strong>Address :</strong>1084 Mogoma Rd, Gaborone</p>
             <p><strong>Phone :</strong>+267 74697684</p>
@@ -613,26 +575,20 @@
     <script>
         // JavaScript for checkout.html specific logic
         document.addEventListener('DOMContentLoaded', () => {
-            const summaryItemsContainer = document.getElementById('summary-items');
-            const summarySubtotalElement = document.getElementById('summary-subtotal');
-            const summaryShippingElement = document.getElementById('summary-shipping');
-            const summaryTotalElement = document.getElementById('summary-total');
-            const shippingMethodRadios = document.querySelectorAll('input[name="shippingMethod"]');
-            const placeOrderButton = document.getElementById('place-order-button');
+            const orderSummaryItemsContainer = document.getElementById('order-summary-items');
+            const checkoutSubtotalElement = document.getElementById('checkout-subtotal');
+            const checkoutTotalElement = document.getElementById('checkout-total');
+            const emptyCartMessage = document.getElementById('empty-checkout-cart-message');
+            const placeOrderButton = document.querySelector('.place-order-button');
+            const checkoutForm = document.getElementById('checkout-form');
 
-            const expressShippingCost = 10.00; // Define express shipping cost
-
-            // Function to get cart items from localStorage (can be shared)
+            // --- Re-iterating common functions for clarity in this file ---
+            // Function to get cart items from localStorage
             function getCartItems() {
                 return JSON.parse(localStorage.getItem('cartItems')) || [];
             }
 
-            // Function to save cart items to localStorage (can be shared)
-            function saveCartItems(items) {
-                localStorage.setItem('cartItems', JSON.stringify(items));
-            }
-
-            // Function to update the cart count display (can be shared)
+            // Function to update the cart count display in the header
             function updateCartCount() {
                 const cartCountElement = document.querySelector('.cart-count');
                 const cartItems = getCartItems();
@@ -644,11 +600,109 @@
                     cartCountElement.style.display = 'none';
                 }
             }
+            // --- End of common functions ---
 
-            // Function to render order summary
+            // Function to render order summary items
             function renderOrderSummary() {
                 const cartItems = getCartItems();
-                summaryItemsContainer.innerHTML = ''; // Clear existing items
+                orderSummaryItemsContainer.innerHTML = ''; // Clear existing items
+
+                let subtotalForDisplay = 0; // This will be the value displayed for subtotal and total
+                const storedCartTotal = localStorage.getItem('cartTotal'); // Get the total from localStorage
+
+                if (storedCartTotal) {
+                    subtotalForDisplay = parseFloat(storedCartTotal);
+                } else {
+                    // Fallback: If cartTotal is not in localStorage, calculate from current cartItems
+                    cartItems.forEach(item => {
+                        const price = parseFloat(item.price) || 0;
+                        subtotalForDisplay += price * item.quantity;
+                    });
+                }
+
 
                 if (cartItems.length === 0) {
-                    summaryItemsContainer.innerHTML = '<p>Your cart is empty. Please add items to proceed to checkout.</p
+                    emptyCartMessage.style.display = 'block'; // Show empty cart message
+                    // No need to set innerHTML again if the p tag is already there with display:none;
+                    // orderSummaryItemsContainer.innerHTML = `<p id="empty-checkout-cart-message" style="text-align: center; margin-top: 20px; color: #888;">Your cart is empty! Please add items to your cart before proceeding to checkout.</p>`;
+
+                    if (placeOrderButton) { // Disable place order button if cart is empty
+                        placeOrderButton.disabled = true;
+                        placeOrderButton.style.opacity = 0.6;
+                        placeOrderButton.style.cursor = 'not-allowed';
+                    }
+                    checkoutSubtotalElement.textContent = `$0.00`;
+                    checkoutTotalElement.textContent = `$0.00`;
+                } else {
+                    emptyCartMessage.style.display = 'none'; // Hide empty cart message
+                    orderSummaryItemsContainer.style.display = 'block'; // Ensure container is visible
+
+                    if (placeOrderButton) { // Enable place order button if cart has items
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.style.opacity = 1;
+                        placeOrderButton.style.cursor = 'pointer';
+                    }
+
+                    // Display individual cart items in the summary
+                    cartItems.forEach(item => {
+                        const price = parseFloat(item.price) || 0;
+                        const itemTotal = price * item.quantity;
+
+                        const itemDiv = document.createElement('div');
+                        itemDiv.classList.add('order-summary-item');
+                        itemDiv.innerHTML = `
+                            <div class="order-summary-item-details">
+                                <img src="${item.image}" alt="${item.name}">
+                                <div>
+                                    <span class="item-name">${item.name}</span><br>
+                                    <span class="item-quantity">Qty: ${item.quantity}</span>
+                                </div>
+                            </div>
+                            <div class="order-summary-item-price">$${itemTotal.toFixed(2)}</div>
+                        `;
+                        orderSummaryItemsContainer.appendChild(itemDiv);
+                    });
+
+                    // Use the subtotalForDisplay (which comes from localStorage or fallback calculation)
+                    checkoutSubtotalElement.textContent = `$${subtotalForDisplay.toFixed(2)}`;
+                    checkoutTotalElement.textContent = `$${subtotalForDisplay.toFixed(2)}`; // Assuming free shipping for now
+                }
+                updateCartCount(); // Update the cart count in the header
+            }
+
+            // Initial render of the order summary when the page loads
+            renderOrderSummary();
+
+            // Event listener for checkout form submission (for demonstration)
+            checkoutForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                // You would typically send this data to a server for order processing
+                const formData = new FormData(checkoutForm);
+                const orderDetails = {
+                    shippingInfo: {},
+                    items: getCartItems(),
+                    subtotal: parseFloat(checkoutSubtotalElement.textContent.replace('$', '')),
+                    total: parseFloat(checkoutTotalElement.textContent.replace('$', '')),
+                    paymentMethod: formData.get('paymentMethod')
+                };
+
+                for (let [key, value] of formData.entries()) {
+                    if (key !== 'paymentMethod') {
+                        orderDetails.shippingInfo[key] = value;
+                    }
+                }
+
+                console.log("Order Details:", orderDetails);
+                alert("Order placed successfully! (This is a demo, no actual order was processed.)");
+
+                // Clear the cart and stored total after successful order
+                localStorage.removeItem('cartItems');
+                localStorage.removeItem('cartTotal'); // Clear the stored total too
+                renderOrderSummary(); // Re-render to show empty cart
+                updateCartCount(); // Update cart count in header
+            });
+        });
+    </script>
+</body>
+</html>
