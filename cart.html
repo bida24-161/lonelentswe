@@ -66,7 +66,21 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
+        }04:05
+
+
+
+
+
+Lone Beular Lentswe (External)
+
+04:00
+
+
+
+
+
+Lone Beular Lentswe (External)
 
         .payment-option:hover {
             border-color: #088178;
@@ -189,7 +203,7 @@
             <table>
                 <tr>
                     <td>Cart Subtotal</td>
-                    <td id="cart-subtotal">$0.00</td>
+                    <td id="cart-subtotal">BWP0.00</td>
                 </tr>
                 <tr>
                     <td>Shipping</td>
@@ -302,18 +316,18 @@
 
                     row.innerHTML = `
                         <td><a href="#" class="remove-item" data-product-id="BWP{item.id}"><i class="far fa-times-circle"></i></a></td>
-                        <td><img src="${imageUrl}" alt="${item.name}" style="width:70px;height:auto;"></td>
-                        <td>${item.name}</td>
-                        <td>$${item.price.toFixed(2)}</td>
-                        <td><input type="number" value="${item.quantity}" min="1" class="item-quantity" data-product-id="BWP{item.id}"></td>
-                        <td>$${itemSubtotal.toFixed(2)}</td>
+                        <td><img src="BWP{imageUrl}" alt="BWP{item.name}" style="width:70px;height:auto;"></td>
+                        <td>BWP{item.name}</td>
+                        <td>BWPBWP{item.price.toFixed(2)}</td>
+                        <td><input type="number" value="BWP{item.quantity}" min="1" class="item-quantity" data-product-id="BWP{item.id}"></td>
+                        <td>BWPBWP{itemSubtotal.toFixed(2)}</td>
                     `;
                     cartItemsBody.appendChild(row);
                 });
             }
 
-            cartSubtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-            cartTotalElement.innerHTML = `<strong>$${subtotal.toFixed(2)}</strong>`;
+            cartSubtotalElement.textContent = `BWPBWP{subtotal.toFixed(2)}`;
+            cartTotalElement.innerHTML = `<strong>BWPBWP{subtotal.toFixed(2)}</strong>`;
             updateCartCount();
         }
 
@@ -396,7 +410,7 @@
         const footerLinks = {
             'deliveryInfoLinkFooter': {
                 title: 'Delivery Information',
-                content: '<p><strong>Standard Delivery:</strong> 3-5 business days. Free for orders over $100.</p><p><strong>Express Delivery:</strong> 1-2 business days. Flat rate of $15.</p><p>We ship internationally. International shipping times and costs vary by destination.</p>'
+                content: '<p><strong>Standard Delivery:</strong> 3-5 business days. Free for orders over BWP100.</p><p><strong>Express Delivery:</strong> 1-2 business days. Flat rate of $15.</p><p>We ship internationally. International shipping times and costs vary by destination.</p>'
             },
             'privacyPolicyLinkFooter': {
                 title: 'Privacy Policy',
@@ -514,7 +528,7 @@
                     formHtml = `
                         <h3>Cash on Delivery</h3>
                         <p>You will pay when your order is delivered. Please have the exact amount ready.</p>
-                        <p>Your order total will be <strong>${cartTotalElement.textContent}</strong>.</p>
+                        <p>Your order total will be <strong>BWP{cartTotalElement.textContent}</strong>.</p>
                         <button type="submit">Place Order (Cash on Delivery)</button>
                     `;
                     break;
